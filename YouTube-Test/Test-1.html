@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 페이지</title>
+    <link rel="icon" href="./apple-icon.png" type="image/png">
+    <link rel="shortcut icon" href="./apple-icon.png" type="image/png" >
+<style>
+* {margin: 0; padding: 0;}
+li {list-style: none;}
+a, img {width: 100%; height: 100%; display: block; text-decoration: none;}
+.unset {display: inline-block; width: unset; height: unset;}
+
+div, article, header, footer, a, ul ,li, p, span, h1, h2, h3, label {border: 0px solid #000; box-sizing: border-box;}
+
+#wrap {}
+
+#wrap {width: 100%; height: 100vh; background-color: rgb(15,15,15);}
+
+.x {position: absolute; top: 20px; left: 20px; width: 200px; height: 50px; 
+ display: flex; color: rgb(240,240,240); justify-content: center; align-items: center; border-radius: 20px;}
+.form-login {}
+.form-login {width: 300px; height: 300px; position: fixed;  z-index: 62; background-color: rgb(60,60,60); 
+padding: 20px; top: 50%; left: 50%; transform: translate(-50%, -50%);}
+.form-login h3 {color: rgb(240,240,240); margin-bottom: 40px; width: 100%;}
+.x:hover {background-color: rgba(0,0,0,0.3);}
+.loginbox {width: 100%; height: 65%; margin-bottom: 30px; position: relative;}
+.loginbox .label-ID {position: absolute; top: 10px; left: 10px; color: rgb(240,240,240);} /*ID */
+.loginbox #ID {position: absolute; top: 40px; left: 10px; width: 80%; color: rgb(240,240,240);
+    background: transparent; border: 1px solid #ccc; font-size: 18px; padding: 5px;} /*ID input*/
+.loginbox .label-PW {position: absolute; top: 80px; left: 10px; color: rgb(240,2450,240);} /*PW*/
+.loginbox #PW {position: absolute; top: 110px; left: 10px; width: 80%; color: rgb(240,240,240);
+    background: transparent; border: 1px solid #ccc; font-size: 18px; padding: 5px;} /*PW input*/
+/*비밀번호 보기*/
+.loginbox .eye {position: absolute; bottom: 50px; right: 10px; background: none; border: 1px solid #000;
+border-radius: 50%; width: 25px; height: 15px; cursor: pointer; display: none; color: rgb(240,240,240);}
+/*로그인 버튼*/
+.loginbox .keyin {position: absolute; bottom: 10px; right: 10px; width: 20%; cursor: pointer; color: rgb(240,240,240);
+background: none; border: 1px solid #000; border-radius: 10px; padding: 2px;}
+/*회원가입 버튼*/
+.loginbox .reg {position: absolute; bottom: 10px; left: 10px;  width: 25%; cursor: pointer; color: rgb(240,240,240);
+background: none; border: 1px solid #000; border-radius: 10px; padding: 2px;}
+.loginbox button:hover {background-color: rgba(0,0,0,0.3);}
+.form-login p {font-size: 12px; color: rgb(240,240,240);}
+.form-login a {position: absolute; bottom: 10px; right: 10px; font-size: 15px; cursor: pointer; display: none; }
+.form-login a:hover {background-color: rgba(0,0,0,0.3);}
+
+
+</style>
+</head>
+<body>
+<div id="wrap">
+    <a href="#" target="_blank" class="x">돌아가기</a>
+    <form onsubmit="return login()" class="form-login">
+        <h3>YOUTUBE 로그인</h3>
+        <div class="loginbox">
+            <label for="ID" class="label-ID">ID</label> 
+            <input type="text" id="ID" placeholder="ID를 입력해주세요" required>
+
+            <label for="PW" class="label-PW">PW</label>
+            <input type="password" id="PW" placeholder="PW를 입력해주세요" required>
+            
+            <button type="button" class="eye" onclick="eye()">&nbsp;&#128065;</button>
+            <button type="submit" class="keyin" onkeypress="keyin(event)">로그인</button>
+            <button type="button" class="reg" onclick="reg()">회원가입</button>
+        </div>
+        <p>관리자 ID는 'admin'이며, 비밀번호는 아무값이나 입력</p>
+    </form>
+    <!--for는 id와 일치해야하며 type에 password 일시 *** 로 가려짐 required는 필수입력강조-->
+</div>
+    <script>
+        
+        // 관리자 암호 //
+        let va_admin = "admin";
+    
+        // 페이지 정의 //
+        let Test_0 = "../YouTube-Test/Test-0 (main).html"; //메인페이지//
+        let Test_1 = "../YouTube-Test/Test-1.html"; //로그인화면//
+        let Test_2 = "../YouTube-Test/Test-2.html"; //회원가입화면//
+
+        // 로그인 함수
+        function login() {
+            
+            let ID = document.getElementById('ID').value.trim(); //트림 공백 제거//
+            let PW = document.getElementById('PW').value.trim();
+
+            
+            let ues_PW = localStorage.getItem(ID); //us_PW = 스토리지 ID 에저장된 value값//
+
+            if (ID === va_admin) {
+                
+                localStorage.setItem('ID', va_admin);
+                alert(`관리자 엑세스 성공 (${ID}) `);
+               
+
+                //새탭이동 및 탭닫기/
+                window.open(Test_0,"_blank");
+                window.close();
+                return true;
+
+            } else if (ues_PW !== null && PW === ues_PW){
+                alert(`반갑습니다 ${ID}님`);
+                //새탭이동 및 탭닫기/
+                window.open(Test_0,"_blank");
+                window.close();
+                return true;
+            } else{
+                alert("암호가 틀렸습니다 하단 p태그 설명문을 봐주세요");
+                return false;
+            }
+        };
+        
+
+
+
+
+        // reg회원가입 페이지로 이동//
+        function reg(){
+            window.open(Test_2,"_blank");
+        };
+
+        // 돌아가기클릭시 메인페이지로//
+        document.querySelector(".x").addEventListener("click", function(){
+            document.querySelector(".x").href = Test_0
+        });
+
+
+
+        // eye button ** 비밀번호 확인 //
+        function eye(){
+            let PW = document.getElementById('PW');
+            if(PW.type === "password"){
+                PW.type = "text";
+            } else {
+                PW.type = "password";
+            }
+        };
+
+        // 비밀번호 입력시 eye 키 호출        
+        document.getElementById('PW').addEventListener("input", function(){
+            let js_PW = document.getElementById('PW');
+            let js_eye = document.querySelector(".loginbox .eye");
+            if(js_PW.value.length > 0){
+                js_eye.style.display = "block";
+            } else {
+                js_eye.style.display = "none";
+            }
+        });
+            
+       
+
+        // Enter 키 입력시 로그인 함수 호출
+        function keyin(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                login();
+            }
+        };
+
+        // 윈도우 로드시 ID에 포커스잡기 //
+        window.onload = function(){
+            document.getElementById('ID').focus();
+        };
+        
+        
+
+
+
+        // 버튼 요소 이펙트 //
+        let js_eye = document.querySelector(".eye");
+        let js_keyin = document.querySelector(".keyin");
+        Ceffect(js_eye);
+        Ceffect(js_keyin);
+
+        /* 클릭 이펙트 Ceffect(대상명) 끌어서 쓰기 */
+        function Ceffect(et){
+            et.addEventListener("mousedown", function(){
+                et.style.backgroundColor = 'rgba(0,0,100,0.4)';                         
+            });
+            et.addEventListener("mouseup", function(){
+                et.style.backgroundColor = '';                
+            });
+            et.addEventListener("mouseleave", function(){
+                et.style.backgroundColor = '';
+            });
+        };
+
+    </script>
+</body>
+</html>

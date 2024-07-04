@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입 페이지</title>
+    <link rel="icon" href="./apple-icon.png" type="image/png">
+    <link rel="shortcut icon" href="./apple-icon.png" type="image/png" >
+<style>
+* {margin: 0; padding: 0;}
+li {list-style: none;}
+a, img {width: 100%; height: 100%; display: block; text-decoration: none;}
+.unset {display: inline-block; width: unset; height: unset;}
+
+div, article, header, footer, a, ul ,li, p, span, h1, h2, h3, label {border: 0px solid #000; box-sizing: border-box;}
+
+
+#wrap {width: 100%; height: 100vh; background-color: rgb(15,15,15);}
+
+.x {position: absolute; top: 20px; left: 20px; width: 200px; height: 50px; 
+ display: flex; color: rgb(240,240,240); justify-content: center; align-items: center; border-radius: 20px;}
+.form-login {}
+.form-login {width: 300px; height: 300px; position: fixed;  z-index: 62; background-color: rgb(60,60,60); 
+padding: 20px; top: 50%; left: 50%; transform: translate(-50%, -50%);}
+.form-login h3 {color: rgb(240,240,240); margin-bottom: 40px; width: 100%;}
+.x:hover {background-color: rgba(0,0,0,0.3);}
+.loginbox {width: 100%; height: 83%; margin-bottom: 45px; position: relative;}
+.loginbox .label-ID {position: absolute; top: 10px; left: 10px; color: rgb(240,240,240);} /*ID */
+.loginbox #ID {position: absolute; top: 40px; left: 10px; width: 80%; color: rgb(240,240,240);
+    background: transparent; border: 1px solid #ccc; font-size: 18px; padding: 5px;}  /*ID input*/
+.loginbox .label-PW {position: absolute; top: 80px; left: 10px; color: rgb(240,240,240);} /*PW*/
+.loginbox #PW {position: absolute; top: 110px; left: 10px; width: 80%; color: rgb(240,240,240);
+    background: transparent; border: 1px solid #ccc; font-size: 18px; padding: 5px;}  /*PW input*/
+
+.loginbox .label-PW-1 {position: absolute; top: 150px; left: 10px; color: rgb(240,240,240); }
+.loginbox #PW-1 {position: absolute; top: 180px; left: 10px; width: 80%; color: rgb(240,240,240);
+    background: transparent; border: 1px solid #ccc; font-size: 18px; padding: 5px;}
+/*비밀번호 보기*/
+.loginbox .eye {position: absolute; bottom: 50px; right: 10px; background: none; border: 1px solid #000; color: rgb(240,240,240);
+border-radius: 50%; width: 25px; height: 15px; cursor: pointer; display: none;}
+/*로그인 버튼*/
+.loginbox .keyin {position: absolute; bottom: 0px; right: 10px; width: 20%; cursor: pointer; color: rgb(240,240,240);
+background: none; border: 1px solid #000; border-radius: 10px; padding: 2px;}
+/*회원가입 버튼*/
+.loginbox .reg {position: absolute; bottom: 10px; left: 10px;  width: 25%; cursor: pointer; color: rgb(240,240,240);
+background: none; border: 1px solid #000; border-radius: 10px; padding: 2px;}
+.loginbox button:hover {background-color: rgba(0,0,0,0.3);}
+.form-login p {font-size: 12px; display: none;}
+.form-login a {position: absolute; bottom: 10px; right: 10px; font-size: 15px; cursor: pointer; display: none; }
+.form-login a:hover {background-color: rgba(0,0,0,0.3);}
+
+</style>
+</head>
+<body>
+<div id="wrap">
+    <a href="#" target="_blank" class="x">돌아가기</a>
+    <form onsubmit="return register()" class="form-login">
+        <h3>YOUTUBE 회원가입</h3>
+        <div class="loginbox">
+            <label for="ID" class="label-ID">ID</label> 
+            <input type="text" id="ID" placeholder="ID를 입력해주세요" required>
+
+            <label for="PW" class="label-PW">PW</label>
+            <input type="password" id="PW" placeholder="PW를 입력해주세요" required>
+
+            <label for="PW-1" class="label-PW-1">PW-1</label>
+            <input type="password" id="PW-1" placeholder="PW를 한번더 입력해주세요" required>
+
+            <button type="button" class="eye" onclick="eye()">&nbsp;&#128065;</button>
+            <button type="submit" class="keyin" onclick="keyin(event)">가입</button>
+            <button type="button" class="reg" onclick="reg()" style="display:none" >회원가입</button>
+        </div>
+        <p>관리자 ID는 'admin'이며, 비밀번호는 아무값이나 입력</p>
+    </form>
+    <!--for는 id와 일치해야하며 type에 password 일시 *** 로 가려짐 required는 필수입력강조-->
+</div>
+
+<script>
+    // 관리자 암호 //
+    let va_admin = "admin";
+    
+    // 페이지 정의 //
+    let Test_0 = "../YouTube-Test/Test-0 (main).html"; //메인페이지//
+    let Test_1 = "../YouTube-Test/Test-1.html"; //로그인화면//
+    let Test_2 = "../YouTube-Test/Test-2.html"; //회원가입화면//
+    
+    // 돌아가기 클릭 시 메인 페이지로//
+    document.querySelector(".x").addEventListener("click", function(){
+        document.querySelector(".x").href = Test_1
+        window.close();
+    });
+
+
+
+    //회원가입//
+    function register(){
+        let re_ID = document.getElementById("ID").value;
+        let re_PW = document.getElementById("PW").value;
+        let re_PW1 = document.getElementById("PW-1").value;
+
+        if(re_PW !== re_PW1){
+            alert("비밀번호가 일치하지 않습니다."); 
+            return false;
+        };
+
+        if( re_ID && re_PW ){
+              localStorage.setItem(re_ID, re_PW);
+            alert(`회원가입 완료되었습니다. ID: ${re_ID} / PW: ${re_PW} 메모하세요`);
+            window.open(Test_1,"_blank");
+            window.close();
+            return true;
+        } else {
+            alert("아이디와 비밀번호를 입력해주세요");
+            return false;
+        };
+
+    };
+
+    //비밀번호 입력시 *** 확인//
+    function eye(){
+        let re_PW = document.getElementById("PW");
+        let re_PW1 = document.getElementById("PW-1");
+        if(re_PW.type === "password" && re_PW1.type === "password"){
+            re_PW.type = "text";
+            re_PW1.type = "text";
+        } else {
+            re_PW.type = "password"; 
+            re_PW1.type = "password";
+        }
+    };
+
+    // 비밀번호 입력 시 eye 호출//
+    document.getElementById("PW").addEventListener("input", eyeon);
+    document.getElementById("PW1").addEventListener("input", eyeon);
+    
+    function eyeon(){   
+        let re_PW = document.getElementById("PW");
+        let re_PW1 = document.getElementById("PW-1");
+        let js_eye = document.querySelector(".loginbox .eye");
+        if(re_PW.value.length > 0 || re_PW1.value.length > 0){
+            js_eye.style.display = "block";
+        } else {
+            js_eye.style.display = "none";
+        }
+    };
+
+
+
+    
+    // Enter키 입력시 회원가입 함수//
+    function keyin(event){
+        if(event.key === "Enter"){
+            event.preventDefault();
+            register();
+        }  
+    };
+
+    // 윈도우 로드 시 ID에 포커스 잡기//
+    window.onload = function(){
+        document.getElementById("ID").focus();
+    };
+
+    //버튼 요소 이펙트//
+    let js_eye = document.querySelector(".eye");
+    let js_keyin = document.querySelector(".keyin");
+    Ceffect(js_eye);
+    Ceffect(js_keyin);
+
+    /* 클릭 이펙트 Ceffect(대상명) 끌어서 쓰기 */
+    function Ceffect(et){
+        et.addEventListener("mousedown", function(){
+            et.style.backgroundColor = 'rgba(0,0,100,0.4)';                         
+        });
+        et.addEventListener("mouseup", function(){
+            et.style.backgroundColor = '';                
+        });
+        et.addEventListener("mouseleave", function(){
+            et.style.backgroundColor = '';
+        });
+    };
+
+
+    
+</script>
+</body>
+</html>
+<!-- 주석 이건 로그인 페이지
+<!DOCTYPE html>
+<html>
+<head>
+    <title>로그인</title>
+</head>
+<body>
+    <h2>로그인</h2>
+    <form id="login-form">
+        <label for="login-id">ID:</label>
+        <input type="text" id="login-id" required><br>
+        <label for="login-pw">Password:</label>
+        <input type="password" id="login-pw" required><br>
+        <button type="button" onclick="login()">로그인</button>
+    </form>
+
+    <script>
+        function login() {
+            const id = document.getElementById('login-id').value;
+            const pw = document.getElementById('login-pw').value;
+
+            const storedId = localStorage.getItem('ID');
+            const storedPw = localStorage.getItem('PW');
+
+            if (id === storedId && pw === storedPw) {
+                alert('로그인 성공!');
+            } else {
+                alert('ID 또는 Password가 일치하지 않습니다.');
+            }
+        }
+    </script>
+</body>
+</html>-->
+

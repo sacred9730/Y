@@ -1,0 +1,2016 @@
+<!DOCTYPE html>
+<html lang="KO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>짭튜브</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="icon" href="./apple-icon.png" type="image/png">
+    <link rel="shortcut icon" href="./apple-icon.png" type="image/png" >
+<script>
+    $(document).ready(function(){
+        /* #만 기본동작 금지*/
+        $("a").click(function(e){
+        var href = $(this).attr("href");
+        if (href === '#'){
+        e.preventDefault(); };
+        });
+
+        /* .im 호버할경우 icons 화려하게등장 */
+        $(".im").hover(ic1,ic2);
+        function ic1(){
+            $(this).find(".icon").stop().fadeIn(300);
+            $(this).find(".icon-var").stop().fadeIn(300);
+            $(this).find("a > img").stop().css("border-radius","0");
+        };
+        function ic2(){
+            $(this).find(".icon").stop().fadeOut(300);
+            $(this).find(".icon-var").stop().fadeOut(300);
+            $(this).find("a > img").stop().css("border-radius","12px");
+        };
+
+        /* button-c 링크 해제 */
+        $(".im-c > .button-c").click(function(e){e.preventDefault()});
+        $(".icons").click(function(e){e.preventDefault()});
+
+        /* button-c 호버 쇼 히든*/
+        $(".button-c").hide();
+        $(".im-title").hover(bc1,bc2);
+        function bc1(){
+            $(this).find(".button-c").show();
+        };
+        function bc2(){
+            $(".button-c").hide();
+        };
+        
+        /* #link 알고리즘 클릭시 변화 */
+        $(".link-f ul li a").eq(9).hide();
+        $(".link-f > ul > li").click(function(){
+            let jq_linkfa = document.querySelectorAll(".link-f ul li a")[9];
+            let link_original_BG = getComputedStyle(jq_linkfa).backgroundColor;
+            let link_original_CO = getComputedStyle(jq_linkfa).color;
+            $(this).find("a").css({"background-color": link_original_CO, "color": link_original_BG});
+            $(this).siblings().find("a").css({"background-color": link_original_BG,"color": link_original_CO});
+        });
+
+
+        
+       
+        // im 내부 음소거 자막 버튼 투명도 변화 //
+        $(".i-v").click(function() {
+            if ($(this).css("opacity") === '0.7') {
+                $(this).css("opacity", '1');
+            } else {
+                $(this).css("opacity", '0.7');
+            }
+        });
+
+        $(".i-c").click(function() {
+            if ($(this).css("opacity") === '0.7') {
+                $(this).css("opacity", '1');
+            } else {
+                $(this).css("opacity", '0.7');
+            }
+        });
+
+        // .im-title 버튼-c ... 클릭이펙트 //
+        $(".button-c").on("mousedown", function() {
+            $(this).css("background-color", "rgba(0,0,0,0.4)");
+        });
+
+        $(".button-c").on("mouseup mouseleave", function() {
+            $(this).css("background-color", "");
+        });
+        
+
+        // 좌측하단 컨텐츠 증가 감소
+        $(".im").last().hide(); //8번쨰 im 숨기기
+        $(".ban_co > div").eq(0).click(function(){
+            let cloneIm = $(".im").clone(true);
+            if($(".img .im").length > 8){
+                $(".img .im").last().remove();
+            };
+        });
+        $(".ban_co > div").eq(1).click(function(){
+            let cloneIm = $(".im").last().clone(true);
+            $(".img").append(cloneIm.show());
+        });
+
+
+
+    
+
+    });
+
+    
+</script>
+
+<style>
+@charset "UTF-8";
+* {margin: 0; padding: 0;}
+a, img {display: block; width: 100%; height: 100%;}
+.unset {display: inline-block; width: unset; height: unset;}
+li {list-style: none;}
+a, p {text-decoration: none;}
+
+div, header, main, a, ul, li, strong, p, span, textarea  {border: 0px solid #000; box-sizing: border-box;}
+h1,h2,h3,h4,h5  {border: 0px solid #000; box-sizing: border-box;}
+
+/* #ban, #wc 미디어쿼리size */
+@media (max-width: 800px) {
+    #ban {display: none; }
+    #wrap #wc {width: 100%;}
+    #wc #link .link-f .link-right {right: 0px;}
+}
+@media (max-width: 640px) {
+    #header .hd2 {display: none;}
+    #header .hd-f .hd3 {display: block; }
+    #header .hd-f .hd3 {display: flex; flex-direction: row;} 
+    #header .hd-f { justify-content: space-between;}
+    #wc #link .link-f .link-right {right: 0px;}  
+}
+
+body::-webkit-scrollbar {width: 10px; background-color:  rgb(15,15,15); }
+body::-webkit-scrollbar-thumb {background-color: rgb(170,170,170);}
+
+
+/*  원래모드 색갈 */
+#header > div {background-color: #fff;}
+
+#header > div > div.hd1 > div.hd1-a > div > div > span {background-color:  rgb(15,15,15);}
+#header > div > div.hd1 > div.hd1-a > div:hover {background-color: rgb(230,230,230);}
+#header > div > div.hd1 > div.hd1-b > a > h1 {color: rgb(33,33,33);}
+#header > div > div.hd1 > div.hd1-b > a > sup {color: rgb(100,100,100);}
+
+#header > div > div.hd2 > div.hd2-a {border: 1px solid rgb(200,200,200);}
+#header > div > div.hd2 > div.hd2-b > div {border: 1px solid rgb(200,200,200);}
+#header > div > div.hd2 > div.hd2-a > input[type=text] {background-color: transparent; }
+#header > div > div.hd2 > div.hd2-a > input[type=text] { color: #000;}
+#header > div > div.hd2 > div.hd2-a > span {color: rgb(100,100,100);}
+#header > div > div.hd2 > div.hd2-a > span:hover {color: rgb(50,50,50);}
+#header > div > div.hd2 > div.hd2-a > div.text-left {background-color: #fff; }
+#header > div > div.hd2 > div.hd2-a > div.text-left::before {border: 1px solid rgb(15,15,15);} 
+#header > div > div.hd2 > div.hd2-a > div.text-left::after {background-color: rgb(15,15,15);}
+#header > div > div.hd2 > div.hd2-b > div::before { border: 1px solid rgb(15,15,15);}
+#header > div > div.hd2 > div.hd2-b > div::after {background-color: rgb(15,15,15);}
+#header > div > div.hd2 > div.hd2-b > a::before { background-color: rgb(15,15,15);}
+#header > div > div.hd2 > div.hd2-b > a::after { border-bottom: 2px solid rgb(15,15,15);}
+#header > div > div.hd2 > div.hd2-b > a {background-color: rgb(242,242,242);}
+#header > div > div.hd2 > div.hd2-b > a:hover {background-color: rgb(217,217,217);}
+#header > div > div.hd2 > div.hd2-b > a > div {background-color: rgb(15,15,15); border: 1px solid  rgb(15,15,15);}
+
+#header > div > div.hd3 > div.hd3-a > div::before {background-color: rgb(3,3,3);}
+#header > div > div.hd3 > div.hd3-a > div::after {border: 2px solid rgb(3,3,3);}
+#header > div > div.hd3 > div.hd3-b > div::before {background-color: rgb(3,3,3);}
+#header > div > div.hd3 > div.hd3-b > div::after { border: 2px solid rgb(3,3,3);; border-top: none; 
+    border-right: none; border-left: none;}
+#header > div > div.hd3 > div.hd3-b > div > div {background-color: rgb(3,3,3);}
+#header > div > div.hd3 > div:hover {background-color: rgb(230,230,230)}
+
+#header > div > div.hd4 > div.hd4-a::before {border: 1px solid rgb(3,3,3);}
+#header > div > div.hd4 > div.hd4-a::after {border: 2px solid rgb(3,3,3);}
+#header > div > div.hd4 > div.hd4-a:hover {background-color: rgb(230,230,230);}
+
+#header > div > div.hd4 > div.hd4-b::before {border: 2px solid rgb(3,3,3); border-top: none;}
+#header > div > div.hd4 > div.hd4-b::after {border: 2px solid rgb(3,3,3); border-bottom: none;}
+#header > div > div.hd4 > div.hd4-b.at::before {background-color: rgb(3,3,3);}
+#header > div > div.hd4 > div.hd4-b.at::after {background-color: rgb(3,3,3);}
+#header > div > div.hd4 > div.hd4-b:hover {background-color: rgb(230,230,230);}
+#header > div > div.hd4 > div {color: rgb(3,3,3);}
+
+#ban > div {background-color: #fff;}
+#ban > div > a:hover {background-color: rgb(240,240,240);}
+#ban > div > a > span {color: rgb(3,3,3);}
+#ban > div > a:nth-child(1) > div::before {background-color: rgb(3,3,3);}
+#ban > div > a:nth-child(1) > div::after {background-color: rgb(3,3,3);}
+#ban > div > a:nth-child(2) > div::before {border: 1px solid rgb(3,3,3);}
+#ban > div > a:nth-child(2) > div::after {border: 1px solid rgb(3,3,3);}
+#ban > div > a:nth-child(3) > div::before {border: 1px solid rgb(3,3,3);  border-left: none; border-right: none;}
+#ban > div > a:nth-child(3) > div::after {border: 1px solid rgb(3,3,3);}
+#ban > div > a:nth-child(4) > div::before {border: 1px solid rgb(3,3,3); border-top: none; border-right: none;}
+#ban > div > a:nth-child(4) > div::after {border: 1px solid rgb(3,3,3);}
+
+#ban > div > div > a {color: rgb(3,3,3);}
+#ban > div > div > a:hover {border: 1px solid #1C62B9;}
+#ban > div > div > a > span {color: rgb(3,3,3); }
+#ban > div > div > a.unset.ban_al {background-color: rgb(240,240,240);}
+#ban > div > div > a.ban_co {background-color: rgb(240,240,240);}
+#ban > div > div > a.ban_co > div:hover {border: 1px solid #1C62B9; }
+#ban > div > div > a.ban_dark {background-color: rgb(240,240,240);}
+
+#link > div {background-color: #fff;}
+#link > div > ul > li > a {background-color: rgb(240,240,240); color: rgb(15,15,15);}
+#link > div > ul > li > a:hover {background-color: rgb(230,230,230);}
+#link > div > div.link-left {background-image: linear-gradient(270deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 50%);}
+#link > div > div.link-right {background-image: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 50%);}
+#link > div > div > span {color: rgb(3,3,3); }
+#link > div > div > span:hover {background-color: rgb(230,230,230); }
+
+#wc {background-color: #fff;}
+#images > div > div > div > a > div.im-b > strong {color: rgb(15,15,15);}
+#images > div > div > div > a > div.im-b > p {color: rgb(100,100,100);}
+#images > div > div > div > a > div.im-b > span {color: rgb(100,100,100);}
+#images > div > div > div > a > div.im-c > div {color: rgb(15,15,15);}
+
+/* pop-voise 팝업 보이스 z-index: 62; */
+#wrap > div.pop-voise {background-color: #fff;}
+#wrap > div.pop-voise > div {color: rgb(30,30,30);}
+#wrap > div.pop-voise > div:hover {background-color: rgb(200,200,200);}
+#wrap > div.pop-voise > h3 {color: rgb(15,15,15);}
+
+#wrap > div.pop-voise > a {background-color: rgb(200,200,200);}
+#wrap > div.pop-voise > a::before {background-color: rgb(15,15,15);}
+#wrap > div.pop-voise > a::after {border-bottom: 3px solid rgb(15,15,15);}
+#wrap > div.pop-voise > a > div {background-color: rgb(15,15,15); }
+#wrap > div.pop-voise > p {color: rgb(100,100,100);}
+
+/* <!-- pop-hd4a 동영상 업로드--> */
+#wrap > div.pop-hd4a {background-color: #fff;}
+#wrap > div.pop-hd4a > ul > li {color: rgb(15,15,15)}
+#wrap > div.pop-hd4a > ul > li:hover {background-color: rgb(240,240,240);}
+#wrap > div.pop-hd4a > ul > li:nth-child(1) > span::before {border: 1px solid rgb(15,15,15); }
+#wrap > div.pop-hd4a > ul > li:nth-child(1) > span::after {border-bottom: 7px solid rgb(15,15,15);}
+#wrap > div.pop-hd4a > ul > li:nth-child(2) > span::before {border-color: rgb(15,15,15);}
+#wrap > div.pop-hd4a > ul > li:nth-child(2) > span::after {border-color: rgb(15,15,15);}
+#wrap > div.pop-hd4a > ul > li:nth-child(3) > span::before {border-color: rgb(15,15,15); }
+#wrap > div.pop-hd4a > ul > li:nth-child(3) > span::after {background-color: rgb(15,15,15);}
+
+
+/* <!-- pop-hd4b 알림 z-index: 46;--> */
+#wrap > div.pop-hd4b {background-color: #fff; color: rgb(15,15,15);}
+#wrap > div.pop-hd4b h3 {color: rgb(15,15,15);}
+#wrap > div.pop-hd4b > a {color: rgb(15,15,15);}
+#wrap > div.pop-hd4b > ul {border-top: 1px solid rgb(230,230,230);}
+#wrap > div.pop-hd4b > ul:hover::-webkit-scrollbar {}
+#wrap > div.pop-hd4b > ul:hover::-webkit-scrollbar-thumb {background-color: rgb(100,100,100);}
+#wrap > div.pop-hd4b > ul > li:hover {background-color: rgb(230,230,230);}
+
+#wrap > div.pop-hd4b > ul > li > div:nth-child(2) > span {color: rgb(3,3,3);}s
+#wrap > div.pop-hd4b > ul > li > div:nth-child(2) > p {color: rgb(3,3,3);}
+#wrap > div.pop-hd4b > ul > li > div:nth-child(4) > .button-al {color: rgb(3,3,3);}
+#wrap > div.pop-hd4b > ul > li > div:nth-child(4) > ul {background-color: rgb(240,240,240);}
+
+#wrap > div.pop-hd4b > ul > li > div:nth-child(4) > ul > li:nth-child(1) > div:nth-child(1)::before {border-color: rgb(3,3,3);}
+#wrap > div.pop-hd4b > ul > li > div:nth-child(4) > ul > li:nth-child(1) > div:nth-child(1)::after {border-color: rgb(3,3,3);}
+#wrap > div.pop-hd4b > ul > li > div:nth-child(4) > ul > li:nth-child(2) > div:nth-child(1)::before {border-color: rgb(3,3,3);}
+#wrap > div.pop-hd4b > ul > li > div:nth-child(4) > ul > li:nth-child(2) > div:nth-child(1)::after {border-color: rgb(3,3,3);}
+
+#wrap > div.pop-hd4b > ul > li > div:nth-child(4) > ul > li:nth-child(1) > div:nth-child(2) {color: rgb(3,3,3);}
+#wrap > div.pop-hd4b > ul > li > div:nth-child(4) > ul > li:nth-child(2) > div:nth-child(2) {color: rgb(3,3,3);}
+#wrap > div.pop-hd4b > ul > li > div:nth-child(4) > ul > li:hover {background-color: rgb(230,230,230);}
+
+/* 좌측 팝업 레이아웃 */
+#wrap > div.pop-hd1 { background-color: #fff;}
+#wrap > div.pop-hd1 > div > div.phd1-a > div:hover {background-color: rgb(230,230,230);}
+#wrap > div.pop-hd1 > div > div.phd1-a > div > div > span {background-color: rgb(3,3,3);}
+#wrap > div.pop-hd1 > div > div.phd1-b > a > h1 {color: rgb(33,33,33);}
+#wrap > div.pop-hd1 > div > div.phd1-b > a > sup {color: rgb(100,100,100)}
+
+#wrap > div.pop-hd1 > ul > li > div {color: rgb(3,3,3);}
+#wrap > div.pop-hd1 > ul > li > span {color: rgb(3,3,3);}
+#wrap > div.pop-hd1 > ul > li:hover {background-color: rgb(230,230,230);}
+
+/*  다크모드 색갈 */
+#header.dark > div {background-color: rgb(15,15,15);}
+
+#header.dark > div > div.hd1 > div.hd1-a > div > div > span {background-color: #fff;}
+#header.dark > div > div.hd1 > div.hd1-a > div:hover {background-color: rgb(40,40,40);}
+#header.dark > div > div.hd1 > div.hd1-b > a > h1 {color: #fff;}
+#header.dark > div > div.hd1 > div.hd1-b > a > sup {color: rgb(170,170,170);}
+
+#header.dark > div > div.hd2 > div.hd2-a {border: 1px solid rgb(50,50,50);}
+#header.dark > div > div.hd2 > div.hd2-b > div {border: 1px solid rgb(50,50,50);}
+#header.dark > div > div.hd2 > div.hd2-a > input[type=text] {background-color: transparent; }
+#header.dark > div > div.hd2 > div.hd2-a > input[type=text] { color: rgb(240,240,240);}
+#header.dark > div > div.hd2 > div.hd2-a > span {color: rgb(160,160,160);}
+#header.dark > div > div.hd2 > div.hd2-a > span:hover {color: rgb(200,200,200);}
+#header.dark > div > div.hd2 > div.hd2-a > div.text-left {background-color: rgb(15,15,15); }
+#header.dark > div > div.hd2 > div.hd2-a > div.text-left::before {border: 1px solid rgb(230,230,230);} 
+#header.dark > div > div.hd2 > div.hd2-a > div.text-left::after {background-color: rgb(230,230,230);}
+#header.dark > div > div.hd2 > div.hd2-a > div.text-right {color: rgb(230,230,230);}
+#header.dark > div > div.hd2 > div.hd2-a > div.text-right:hover{background-color: rgb(65,65,65);}
+
+#header.dark > div > div.hd2 > div.hd2-b > div {background-color: rgb(34,34,34);}
+#header.dark > div > div.hd2 > div.hd2-b > div::before { border: 1px solid rgb(230,230,230);}
+#header.dark > div > div.hd2 > div.hd2-b > div::after {background-color: rgb(230,230,230);}
+#header.dark > div > div.hd2 > div.hd2-b > a::before { background-color: rgb(230,230,230)}
+#header.dark > div > div.hd2 > div.hd2-b > a::after { border-bottom: 2px solid rgb(230,230,230);}
+#header.dark > div > div.hd2 > div.hd2-b > a {background-color: rgb(34,34,34);}
+#header.dark > div > div.hd2 > div.hd2-b > a:hover {background-color: rgb(60,60,60);}
+#header.dark > div > div.hd2 > div.hd2-b > a > div {background-color: rgb(230,230,230); border: 1px solid  rgb(230,230,230);}
+
+
+
+#header.dark > div > div.hd3 > div.hd3-a > div::before {background-color: #fff;}
+#header.dark > div > div.hd3 > div.hd3-a > div::after {border: 2px solid #fff;}
+#header.dark > div > div.hd3 > div.hd3-b > div::before {background-color: #fff;}
+#header.dark > div > div.hd3 > div.hd3-b > div::after { border: 2px solid #fff; border-top: none; 
+    border-right: none; border-left: none;}
+#header.dark > div > div.hd3 > div.hd3-b > div > div {background-color: #Fff;}
+#header.dark > div > div.hd3 > div:hover {background-color: rgb(40,40,40)}
+
+
+#header.dark > div > div.hd4 > div.hd4-a::before {border: 1px solid #fff;}
+#header.dark > div > div.hd4 > div.hd4-a::after {border: 1px solid #fff;}
+#header.dark > div > div.hd4 > div.hd4-a:hover {background-color: rgb(40,40,40);}
+
+#header.dark > div > div.hd4 > div.hd4-b::before {border: 2px solid #fff; border-top: none;}
+#header.dark > div > div.hd4 > div.hd4-b::after {border: 2px solid #fff; border-bottom: none;}
+#header.dark > div > div.hd4 > div.hd4-b.at::before {background-color: #fff;}
+#header.dark > div > div.hd4 > div.hd4-b.at::after {background-color: #Fff;}
+#header.dark > div > div.hd4 > div.hd4-b:hover {background-color: rgb(40,40,40);}
+#header.dark > div > div.hd4 > div {color: #fff;}
+
+#ban.dark > div {background-color: rgb(15,15,15);}
+#ban.dark > div > a:hover {background-color: rgb(40,40,40);}
+#ban.dark > div > a > span {color: #fff;}
+#ban.dark > div > a:nth-child(1) > div::before {background-color: #fff;}
+#ban.dark > div > a:nth-child(1) > div::after {background-color: #fff;}
+#ban.dark > div > a:nth-child(2) > div::before {border: 1px solid #fff;}
+#ban.dark > div > a:nth-child(2) > div::after {border: 1px solid #fff;}
+#ban.dark > div > a:nth-child(3) > div::before {border: 1px solid #fff;  border-left: none; border-right: none;}
+#ban.dark > div > a:nth-child(3) > div::after {border: 1px solid #fff;}
+#ban.dark > div > a:nth-child(4) > div::before {border: 1px solid #fff; border-top: none; border-right: none;}
+#ban.dark > div > a:nth-child(4) > div::after {border: 1px solid #fff;}
+
+#ban.dark > div > div > a {color: #fff;}
+#ban.dark > div > div > a:hover {border: 1px solid #1C62B9;}
+#ban.dark > div > div > a > span {color: #fff; }
+#ban.dark > div > div > a.unset.ban_al {background-color: rgb(30,30,30);}
+#ban.dark > div > div > a.ban_co {background-color: rgb(30,30,30);}
+#ban.dark > div > div > a.ban_co > div:hover {border: 1px solid #1C62B9; }
+#ban.dark > div > div > a.ban_dark {background-color: rgb(30,30,30);}
+
+#link.dark > div {background-color: rgb(15,15,15);}
+#link.dark > div > ul > li > a {background-color: rgb(40,40,40); color: rgb(240,240,240);}
+#link.dark > div > ul > li > a:hover {background-color: rgb(60,60,60);}
+#link.dark > div > div.link-left {background-image: linear-gradient(270deg, rgba(15,15,15,0) 0%, rgba(15,15,15,1) 50%);}
+#link.dark > div > div.link-right {background-image: linear-gradient(90deg, rgba(15,15,15,0) 0%, rgba(15,15,15,1) 50%);}
+#link.dark > div > div > span {color: rgb(240,240,240); }
+#link.dark > div > div > span:hover {background-color: rgb(60,60,60); }
+
+#wc.dark {background-color: rgb(15,15,15);}
+#images.dark > div > div > div > a > div.im-b > strong {color: rgb(240,240,240);}
+#images.dark > div > div > div > a > div.im-b > p {color: rgb(170,170,170);}
+#images.dark > div > div > div > a > div.im-b > span {color: rgb(170,170,170);}
+#images.dark > div > div > div > a > div.im-c > div {color: rgb(240,250,240);}
+
+/* pop-voise 팝업 보이스 z-index: 62; */
+#wrap.dark > div.pop-voise {background-color: rgb(33,33,33);}
+#wrap.dark > div.pop-voise > div {color: rgb(240,240,240);}
+#wrap.dark > div.pop-voise > div:hover {background-color: rgb(77,77,77);}
+#wrap.dark > div.pop-voise > h3 {color: rgb(240,240,240);}
+
+#wrap.dark > div.pop-voise > a {background-color: rgb(113,113,113);}
+#wrap.dark > div.pop-voise > a::before {background-color: #fff;}
+#wrap.dark > div.pop-voise > a::after {border-bottom: 3px solid #fff;}
+#wrap.dark > div.pop-voise > a > div {background-color: #fff; }
+#wrap.dark > div.pop-voise > p {color: rgb(170,170,170);}
+
+/* <!-- pop-hd4a 동영상 업로드--> */
+#wrap.dark > div.pop-hd4a {background-color: rgb(40,40,40);}
+#wrap.dark > div.pop-hd4a > ul > li {color: rgb(240,240,240)}
+#wrap.dark > div.pop-hd4a > ul > li:hover {background-color: rgb(60,60,60);}
+#wrap.dark > div.pop-hd4a > ul > li:nth-child(1) > span::before {border: 1px solid rgb(240,240,240); }
+#wrap.dark > div.pop-hd4a > ul > li:nth-child(1) > span::after {border-bottom: 7px solid rgb(240,240,240);}
+#wrap.dark > div.pop-hd4a > ul > li:nth-child(2) > span::before {border-color: rgb(240,240,240);}
+#wrap.dark > div.pop-hd4a > ul > li:nth-child(2) > span::after {border-color: rgb(240,240,240);}
+#wrap.dark > div.pop-hd4a > ul > li:nth-child(3) > span::before {border-color: rgb(240,240,240); }
+#wrap.dark > div.pop-hd4a > ul > li:nth-child(3) > span::after {background-color: rgb(240,240,240);}
+
+
+/* <!-- pop-hd4b 알림 z-index: 46;--> */
+#wrap.dark > div.pop-hd4b {background-color: rgb(40,40,40); color: rgb(240,240,240);}
+#wrap.dark > div.pop-hd4b h3 {color: rgb(240,240,240);}
+#wrap.dark > div.pop-hd4b > a {color: rgb(240,240,240);}
+#wrap.dark > div.pop-hd4b > ul {border-top: 1px solid rgb(80,80,80);}
+#wrap.dark > div.pop-hd4b > ul:hover::-webkit-scrollbar {}
+#wrap.dark > div.pop-hd4b > ul:hover::-webkit-scrollbar-thumb {background-color: rgb(100,100,100);}
+#wrap.dark > div.pop-hd4b > ul > li:hover {background-color: rgb(80,80,80 );}
+
+#wrap.dark > div.pop-hd4b > ul > li > div:nth-child(2) > span {color: rgb(240,240,240);}
+#wrap.dark > div.pop-hd4b > ul > li > div:nth-child(2) > p {color: rgb(240,240,240);}
+#wrap.dark > div.pop-hd4b > ul > li > div:nth-child(4) > .button-al {color: rgb(240,240,240);}
+#wrap.dark > div.pop-hd4b > ul > li > div:nth-child(4) > ul {background-color: rgb(45,45,45);}
+
+#wrap.dark > div.pop-hd4b > ul > li > div:nth-child(4) > ul > li:nth-child(1) > div:nth-child(1)::before {border-color: rgb(240,240,240);}
+#wrap.dark > div.pop-hd4b > ul > li > div:nth-child(4) > ul > li:nth-child(1) > div:nth-child(1)::after {border-color: rgb(240,240,240);}
+#wrap.dark > div.pop-hd4b > ul > li > div:nth-child(4) > ul > li:nth-child(2) > div:nth-child(1)::before {border-color: rgb(240,240,240);}
+#wrap.dark > div.pop-hd4b > ul > li > div:nth-child(4) > ul > li:nth-child(2) > div:nth-child(1)::after {border-color: rgb(240,240,240);}
+
+#wrap.dark > div.pop-hd4b > ul > li > div:nth-child(4) > ul > li:nth-child(1) > div:nth-child(2) {color: rgb(240,240,240);}
+#wrap.dark > div.pop-hd4b > ul > li > div:nth-child(4) > ul > li:nth-child(2) > div:nth-child(2) {color: rgb(240,240,240);}
+#wrap.dark > div.pop-hd4b > ul > li > div:nth-child(4) > ul > li:hover {background-color: rgb(80,80,80);}
+
+/* 좌측 팝업 레이아웃 */
+#wrap.dark > div.pop-hd1 { background-color: rgb(15,15,15);}
+#wrap.dark > div.pop-hd1 > div > div.phd1-a > div:hover {background-color: rgb(40,40,40);}
+#wrap.dark > div.pop-hd1 > div > div.phd1-a > div > div > span {background-color: #fff;}
+#wrap.dark > div.pop-hd1 > div > div.phd1-b > a > h1 {color: #fff;}
+#wrap.dark > div.pop-hd1 > div > div.phd1-b > a > sup {color: rgb(170,170,170);}
+
+#wrap.dark > div.pop-hd1 > ul > li > div {color: #fff;}
+#wrap.dark > div.pop-hd1 > ul > li > span {color: #fff;}
+#wrap.dark > div.pop-hd1 > ul > li:hover {background-color: rgb(40,40,40);}
+
+
+/*wrap 워랩*/
+#wrap {width: 100%;  display: flex; flex-wrap: wrap;}
+
+/*header 헤더*/
+#header {width: 100%; height: 60px;}
+.hd-f {width: 100%; height: 60px; display: flex; position: fixed; z-index: 12;}
+.hd1 {width: 200px; }
+.hd2 {width: calc(100% - 400px);}
+.hd3 {width: 140px; }
+#header .hd3 {display: none;}
+.hd4 {width: 200px; }
+
+
+/* hd1 좌측헤더 햄버거 */
+.hd1 {display: flex;}
+.hd1-a {width: 60px; display: flex; justify-content: flex-end; align-items: center; cursor: pointer;}
+.hd1-aa:hover {}
+.hd1-aa {width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; 
+align-items: center; margin-right: 5px;}
+.hd1-aa > div {width: 20px; height: 17px; position: relative;}
+.hd1-aa div span {position: absolute; width: 18px; height: 1px; left: 50%; transform: translateX(-50%);
+display: block; }
+.hd1-aa span:nth-child(1) { top: 0;}
+.hd1-aa span:nth-child(2) { top: 50%; transform: translate(-50%, -50%); height: 2px;}
+.hd1-aa span:nth-child(3) { bottom: 0;}
+
+/* hd1 좌측헤더 로고 */
+.hd1-b {width: 140px; display: flex; justify-content: center; align-items: center;}
+.hd1-b a {display: flex; justify-content: center; align-items: center;}
+.hd1-b a sup { font-size: 10px; margin-top: -20px; }
+
+.logo-icon {width: 30px; height: 20px; background-color: red; border-radius: 27%;
+display: flex; justify-content: center; align-items: center; padding-left: 5px;}
+.logo-icon-a {width: 0px; height: 0px; border-left: 5px solid transparent;
+    border-right: 5px solid transparent; border-bottom: 8px solid #fff; 
+    transform: rotate(90deg); }
+.logo {padding-left: 0px; font-size: 22px; letter-spacing: -3px; 
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5)}
+
+
+/* hd2 좌측 */
+.hd2 {display: flex; align-items: center; justify-content: flex-end;}
+.hd2 .hd2-a {width: calc(90% - 200px); height: 40px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); 
+position: relative; display: flex; justify-content: center; align-items: center; padding-left: 17px;
+border-top-left-radius: 25px; border-bottom-left-radius: 25px;}
+/* 좌측돋보기 */
+.hd2-a .text-left {position: absolute; width: 50px; height: 40px; left: -35px; border-top-left-radius: 25px;  border-bottom-left-radius: 25px;
+  border: 1px solid #1C62B9; border-right: none; }
+.hd2-a .text-left::before { content: ''; width: 15px; height: 15px; border-radius: 50%; 
+  position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%); }
+.hd2-a .text-left::after {content: ''; width: 7px; height: 1px;  position: absolute;
+top: 65%; left: 65%; transform: translate(-50%, -50%) rotate(45deg);}
+/* 중앙 인풋창 */
+.hd2-a > input {width: 100%; height: 25px; border: none; outline: none; font-size: 17px;}
+/* 중앙 가상키 */
+.hd2-a > span {width: 25px; height: 25px; cursor: pointer; margin-top: 5px; margin-right: 5px;}
+.hd2-a > span:hover {}
+/* 중앙 삭제키 */
+.hd2-a .text-right {width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; border-radius: 50%;
+    font-size: 30px; line-height: 30px; cursor: pointer; }
+.hd2-a .text-right:hover {background-color: rgba(0,0,0,0.3);}
+/* hd2 우측 */
+.hd2 .hd2-b {width: 200px; height: 60px; display: flex; align-items: center;}
+/* 우측돋보기 */
+.hd2-b > div {width: 60px; height: 40px;  position: relative; cursor: pointer;
+    border-top-right-radius: 25px; border-bottom-right-radius: 25px; }
+.hd2-b > div::before { content: ''; width: 15px; height: 15px; border-radius: 50%; 
+ position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%); }
+.hd2-b > div::after {content: ''; width: 7px; height: 1px;  position: absolute;
+top: 64%; left: 64%; transform: translate(-50%, -50%) rotate(45deg);}
+/* 우측마이크 */
+.hd2-b > a {width: 40px; height: 40px; border-radius: 50%; margin-left: 20px; position: relative; }
+.hd2-b > a:hover {}
+.hd2-b > a::before {content: ''; position: absolute; width: 7px; height: 14px; border-radius: 20px;
+top: 40%; left: 50%; transform: translate(-50%, -50%);}
+.hd2-b > a::after {content: ''; position: absolute; width: 13px; height: 13px;  border-radius: 50%; 
+ top: 50%; left: 50%; transform: translate(-50%, -50%);}
+.hd2-b > a > div {position: absolute; top: 70%; left: 50%; width: 2px; height: 5px; transform: translate(-50%, -50%); }
+
+
+
+/* hd3 반응형 헤더 */
+.hd3 {display: flex; justify-content: space-evenly; align-items: center;}
+.hd3 > div {width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center;
+align-items: center; cursor: pointer;}
+.hd3 > div:hover {}
+.hd3 > div > div {width: 20px; height: 20px; position: relative;}
+
+.hd3-aa::after {content: ''; width: 10px; height: 10px; border-radius: 50%; 
+  position: absolute; top: 0; left: 0}
+.hd3-aa::before {content: ''; width: 8px; height: 2px;  position: absolute;
+top: 13px;; right: 0px; transform: rotate(45deg)}
+
+.hd3-bb::after {content: ''; width: 15px; height: 15px; border-radius: 50%; 
+position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); }
+.hd3-bb::before {content: ''; width: 2px; height: 4px;  top: 89%; left: 50%;
+transform: translate(-50%, -50%); position: absolute; }
+.hd3-bbb {position: absolute; width: 6px; height: 12px; top: 35%; left: 50%; border-radius: 25px;
+    transform: translate(-50%, -50%);  border: none;}
+
+
+/* hd4 우측 헤더 */
+.hd4 {display: flex;  justify-content: space-evenly; align-items: center;}
+.hd4 > div {width: 40px; height: 40px; border-radius: 50%; position: relative; font-weight: bold; 
+cursor: pointer; display: flex; justify-content: center; align-items: center; padding-bottom: 3px;}
+.hd4 > div:nth-child(1):hover {}
+.hd4 > div:nth-child(2):hover {}
+
+.hd4-a::after {content: ''; width: 15px; height: 11px; position: absolute;
+ top: 50%; left: 48%; transform: translate(-50%, -50%);}
+.hd4-a::before {content: ''; width: 5px; height: 5px; position: absolute;
+ top: 42%; left: 70%; transform: translate(-50%, -50%); transform: rotate(45deg)}
+
+.hd4-b::after {content: ''; width: 6px; height: 15px; position: absolute; border-radius: 50%;
+ top: 45%; left: 50%; transform: translate(-50%, -50%);}
+.hd4-b::before {content: ''; top: 65%; left: 50%; transform: translate(-50%, -50%); position: absolute;
+ width: 15px; height: 7px; border-radius: 20px; }
+.hd4-b.at::after, .hd4-b.at::before {}
+
+
+.hd4-c { background-color: #000; border: 2px solid #1C62B9;}
+
+/*main 컨텐츠시작*/
+#main {width: 100%; height: 100vh; display: flex; }
+
+
+
+
+
+/*ban 배너*/
+#ban {width: 75px; }
+.ban-f {width: 75px; height: 100%; position: fixed; padding: 2px 10px 2px 2px;}
+.ban-f > a {width: 64px; height: 74px; display: flex; justify-content: center; align-items: center;
+    text-align: center;  flex-direction: column; border-radius: 12%;}
+.ban-f > a > div {width: 24px; height: 24px; position: relative;}
+.ban-f > a:hover {}
+.ban-f > a > span {font-size: 10px; text-align: center;  margin-top: 5px;}
+
+.ban-f > a:nth-child(1) > div::after {content: ''; width: 11px; height: 11px; position: absolute;
+transform: rotate(45deg);  top: 4px; left: 6px;}
+.ban-f > a:nth-child(1) > div::before {content: ''; width: 19px; height: 9px; position: absolute;
+ top: 9px; left: 2px;}
+
+.ban-f > a:nth-child(2) > div::after {content: ''; width: 13px; height: 5px; position: absolute;
+transform: rotate(154deg); top: 3px; left: 3px; border-radius: 20px; }
+.ban-f > a:nth-child(2) > div::before {content: ''; width: 13px; height: 5px; position: absolute;
+transform: rotate(154deg); top: 10px; left: 3px; border-radius: 20px; }
+
+.ban-f > a:nth-child(3) > div::after {content: ''; width: 18px; height: 7px; position: absolute;
+top: 8px; left: 1px; }
+.ban-f > a:nth-child(3) > div::before {content: ''; width: 14px; height: 3px; position: absolute;
+top: 0; left: 4px;}
+
+.ban-f > a:nth-child(4) > div::after {content: ''; width: 13px; height: 13px; position: absolute;
+top: 0; left: 3px; }
+.ban-f > a:nth-child(4) > div::before {content: ''; width: 13px; height: 13px; position: absolute;
+top: 5px; left: 0px; }
+
+/* 배너 하단 3버튼 */
+.ban_btn {position: absolute; bottom: 80px;}
+.ban_btn > a {width: 64px; height: 74px; display: flex; justify-content: center; align-items: center;
+    text-align: center;  flex-direction: column; border-radius: 12%;}
+.ban_btn > a:hover {background-color: rgba(0,0,0,0.3);}
+.ban_btn > a > div {width: 24px; height: 24px; position: relative;}
+.ban_btn > a > span {font-size: 10px; text-align: center; margin-top: 5px;}
+
+.ban_btn > .ban_help {height: 40px; position: relative; background-color: red;}
+.ban_btn > .ban_help > div {border-left: 15px solid transparent; border-right: 15px solid transparent; border-bottom: 22px solid #fff;
+width: 0; height: 0; transform: rotate(90deg);}
+.ban_btn > .ban_help > p {position: absolute; color: green; font-weight: bold;}
+
+
+.ban_btn .ban_al {margin-top: 10px; height: 32px; position: relative;}
+.ban_btn .ban_al div {}
+.ban_btn .ban_al span {margin-top: 2px; position: absolute;}
+
+.ban_btn .ban_co {margin-top: 10px; height: 32px; position: relative; flex-direction: row; gap: 10px;}
+.ban_btn .ban_co div {border-radius: 5px; z-index: 12;}
+.ban_btn .ban_co div:hover {scale: 1.1; }
+.ban_btn .ban_co span {margin-top: 2px; position: absolute;}
+
+.ban_btn .ban_dark {margin-top: 10px; width: 64px; height: 32px; position: relative;}
+.ban_btn .ban_dark div {transform: translateX(-16px); width: 24px; height: 24px; border-radius: 5px; transition: all 0.3s;}
+.ban_btn .ban_dark span {margin-top: 2px; position: absolute; }
+
+
+/*wc 링크,동영상 시작*/
+#wc {width: calc(100% - 75px); height: max-content;  }
+
+
+/*link 알고리즘*/
+#link {width: 100%; height: 60px;}
+.link-f {width: 100%; height: 60px; z-index: 12;}
+/* link 알고리즘 */
+.link-f {display: flex; position: relative; overflow: hidden;  position: fixed;}
+/*그라데이션효과 추가*/
+.link-left {width: 100px; height: 60px; position: absolute; top: 0; left: 0; }
+.link-right {width: 100px; height: 60px; position: absolute; top: 0; right: 75px; }
+/* 외부 div 포지션 absolute 추가*/
+.link-f > div {display: flex; justify-content: center; align-items: center;}
+/* 외부 div 내부 ">" 유니코드 추가*/
+.link-f > div > span {width: 40px; height: 40px;  display: block; font-size: 20px; border-radius: 50%;
+display: flex; justify-content: center; align-items: center; text-align: center; cursor: pointer; padding-bottom: 5px;}
+.link-f > div > span:hover {}
+/* ul 속성 */
+.link-f ul {padding: 12px; display: flex; justify-content: flex-start; align-items: center; gap: 12px;  height: max-content; 
+ width: max-content; margin-left: 10px; }
+.link-f ul li {}
+.link-f ul li a {width: max-content; height: 32px; display: flex; justify-content: center; align-items: center; padding: 12px; border-radius: 7px;
+font-weight: bold; font-size: 14px;}
+
+/*imgaes 동영상 썸네일*/
+#images {min-height: calc(100vh - 60px); height: max-content;}
+.img {width: 100%; height: 100%; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px;
+padding: 16px;}
+.im {aspect-ratio: 1.7 / 1 ; margin-bottom: 40px;}
+.im img {border-radius: 12px; transition: all 0.2s;}
+
+.im > a {position: relative;}
+.im > .icons {position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; }
+
+/* .im .icons 재생막대바 시간 음소거등등*/
+.im .icons .icon {padding: 2px; background-color: rgba(0,0,0,0.7); color: #fff; border-radius: 3px; margin: 5px;
+  font-size: 12px; font-weight: bold; }
+.i-v { position: absolute; top: 0; right: 0; opacity: 1; }
+.i-c { position: absolute; top: 40px; right: 0; opacity: 0.7;}
+.i-t { position: absolute; bottom: 5px; right: 0;}
+.icon-var {position: absolute; bottom: 0; width: 100%; height: 5px; background-color: rgba(255,255,255,0.7);  }
+.icon-var::after {content: ''; display: block; width: 0; height: 100%; background-color: red; animation:  progress linear infinite; }
+.icon-var::after {animation-duration: calc(var(--var-time) * 1s);}
+@keyframes progress {0% {width: 0%;} 100% {width: 100%}; }
+
+.icon {display: none; }
+.icon-var {display: none;}
+
+
+
+
+/*.im 카드 두줄바꿈 생략 버튼등*/
+.im .im-title {margin-top: 10px;}
+.im > .im-title > a { display: grid; grid-template-columns: 2fr 9fr 1fr;  }
+.im-a {display: flex; justify-content: center; align-items: start; }
+.im-a img {width: 36px; height: 36px; border-radius: 50%;  padding: 5px;}
+.im-b {display: grid; grid-template-rows: 2fr 1fr 1fr; }
+.im-b strong {padding: 5px; line-height: 1.5; 
+    font-size: 16px;
+    overflow: hidden;  
+    text-overflow: ellipsis; 
+    word-break: break-word;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; 
+    }
+.im-b p {
+    font-size: 14px;
+    overflow: hidden;  
+    text-overflow: ellipsis; 
+    word-break: break-word;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1; 
+}
+
+.im-b span {
+    font-size: 14px;
+    overflow: hidden;  
+    text-overflow: ellipsis; 
+    word-break: break-word;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1; 
+}
+.im-c {position: relative;}
+.button-c {display: flex; justify-content: center; align-items: center; width: 40px; height: 40px; 
+    font-size: 15px; font-weight: bold; border: none; position: absolute; top: 5px; left: -5px; 
+transform: rotate(90deg); letter-spacing: -8px;  border-radius: 50%;
+transition: all 0.3s ease-out;}
+
+
+/* 우측마이크 */
+.hd2-b > a {width: 40px; height: 40px; border-radius: 50%; margin-left: 20px; position: relative; }
+.hd2-b > a:hover {background-color: rgb(0,0,0,0.3);}
+.hd2-b > a::before {content: ''; position: absolute; width: 7px; height: 14px; background-color: #fff; border-radius: 20px;
+top: 40%; left: 50%; transform: translate(-50%, -50%);}
+.hd2-b > a::after {content: ''; position: absolute; width: 13px; height: 13px;  border-radius: 50%; 
+border-bottom: 2px solid #fff; top: 50%; left: 50%; transform: translate(-50%, -50%);}
+.hd2-b > a > div {position: absolute; top: 70%; left: 50%; width: 2px; height: 5px; transform: translate(-50%, -50%); 
+background-color: #fff; border: 1px solid #fff;}
+
+
+/* pop-voise 팝업 보이스 z-index: 62; */
+.pop-voise {position: fixed; width: 600px; height: 450px; top: 240px; left: 50%; transform: translate(-50%, -50%);
+ z-index: 24; padding: 70px 35px; z-index: 62; }
+/* div x버튼 닫기 */
+.pop-voise > div {width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; border-radius: 50%;
+    font-size: 30px; line-height: 30px; cursor: pointer; position: absolute; right: 10px; top: 30px; }
+.pop-voise > div:hover {}
+/* h3 출력창 */
+.pop-voise h3 { width: 100%; height: 50%; font-size: 24px; font-weight: 400;
+overflow-Y: scroll;
+word-break: break-word;
+}
+/* a 음성 아이콘 */
+.pop-voise a {width: 68px; height: 68px; border-radius: 50%; position: absolute; z-index: 74;
+bottom: 50px; left: 50%; transform: translate(-50%, -50%); }
+.pop-voise a::before {content:''; position: absolute; width: 14px; height: 28px; 
+border-radius: 20px; top: 40%; left: 50%; transform: translate(-50%, -50%);}
+.pop-voise a::after {content: ''; position: absolute; width: 26px; height: 26px; border-radius: 50%;
+ top: 50%; left: 50%; transform: translate(-50%, -50%);}
+.pop-voise a div {position: absolute; top: 75%; left: 50%; width: 3px; height: 5px; transform: translate(-50%, -50%);}
+/* p 하단 안내*/
+.pop-voise p { position: absolute; bottom: 30px; left: 50%; transform: translate(-50%, -50%); font-size: 14px;}
+/* pop-bg 팝업 백그라운드 z-index: 50; */
+.pop-bg {position: fixed; z-index: 50; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7);
+ display: none;}
+/* 녹음시  a음성아이콘 주변  방사 애니메이션 구현 */
+.pop-voise span {position: absolute; width: 69px; height: 69px;  display: none;
+border-radius: 50%; border: 1px solid rgb(200,200,200);
+z-index: 73; top: 66%; left: 44%; transform: translate(-50%, -50%)}
+@keyframes grow {
+    0% { transform: scale(1); opacity: 0; }
+    100% { transform: scale(2)  }
+}
+
+/* <!-- pop-hd4a 동영상 업로드--> */
+.pop-hd4a {width: 230px; height: 136px; padding: 10px 0px; border-radius: 20px;  
+position: fixed; z-index: 64; top: 60px; right: 135px; display: none;}
+.pop-hd4a ul {width: 100%; height: 100%; }
+.pop-hd4a ul li {display: flex; height: 33.33%;  cursor: pointer;}
+.pop-hd4a ul li:hover {}
+.pop-hd4a ul li span {width: 20%; position: relative; display: flex; justify-content: center; align-items: center;
+font-weight: 900; font-size: 20px; }
+.pop-hd4a ul li p {width: 80%; display: flex; align-items: center; font-size: 15px;}
+/* pop-hd4a li:nth(1) 동영상 아이콘 */
+.pop-hd4a ul li:nth-child(1) span:before {content: ''; width: 20px; height: 20px; position: absolute; 
+ top: 50%; left: 50%; transform: translate(-50%, -50%);}
+.pop-hd4a ul li:nth-child(1) span:after {content: ''; width: 0px; height: 0px; position: absolute;
+border-left: 5px solid transparent; border-right: 5px solid transparent; 
+top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(90deg)}
+/* pop-hd4a li:nth(2) 라이브 아이콘 */
+.pop-hd4a ul li:nth-child(2) span::before {content: ''; width: 12px; height: 12px; position: absolute;
+border-radius: 50px; border: 2px solid; border-top: none; border-bottom: none;
+top: 52%; left: 50%; transform: translate(-50%, -50%);}
+.pop-hd4a ul li:nth-child(2) span::after {content: ''; width: 20px; height: 20px; position: absolute;
+border-radius: 50px; border: 2px solid; border-top: none; border-bottom: none;
+top: 52%; left: 50%; transform: translate(-50%, -50%);}
+/* pop-hd4a li:nth(2) 게시물 아이콘 */
+.pop-hd4a ul li:nth-child(3) span::before {content: ''; width: 20px; height: 20px; position: absolute; 
+border: 1px solid; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.pop-hd4a ul li:nth-child(3) span::after {content: ''; width: 4px; height: 22px; position: absolute;
+ top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(45deg);}
+
+
+
+/* <!-- pop-hd4b 알림 z-index: 46;--> */
+.pop-hd4b {width: 480px; height: 640px; border-radius: 20px; 
+position: fixed; z-index: 64; top: 60px; right: 80px; display: flex; flex-wrap: wrap; display: none;}
+/* 제목 */
+.pop-hd4b h3 {width: 430px; height: 50px; padding: 12px 24px; font-size: 16px; font-weight: 200;}
+/* 톱니바퀴설정 */
+.pop-hd4b .pophd4b-more {width: 48px; height: 50px; font-size: 27px; font-weight: 100;
+display: flex; justify-content: center; align-items: center;}
+/* 알림카드 집 */
+.pop-hd4b > ul {width: 100%; height: 92%; overflow: hidden;}
+.pop-hd4b > ul:hover {overflow-y : scroll;}
+.pop-hd4b > ul:hover::-webkit-scrollbar {width: 5px;}
+.pop-hd4b > ul:hover::-webkit-scrollbar-thumb {width: 5px;}
+.pop-hd4b > ul > li:hover {}
+/* 알람카드 al-title */
+.pop-hd4b > ul > li { width: 475px; min-height: 80px; max-height: 160px; display: flex; padding: 16px; padding-right: 0; }
+.pop-hd4b > ul > li > div {cursor: pointer;}
+/* 1프사, 2댓글, 3썸넬, 4설정 */
+.pop-hd4b ul li div:nth-child(1) {width: 15%;}
+.pop-hd4b ul li div:nth-child(1) img {width: 48px; height: 48px; border-radius: 50%;}
+.pop-hd4b ul li div:nth-child(2) {width: 55%; display: flex; flex-direction: column; justify-content: space-between;}
+.pop-hd4b ul li div:nth-child(2) span {font-size: 13px; height: 80%;  display: block; overflow: hidden; 
+line-height: 1.5;}
+.pop-hd4b ul li div:nth-child(2) p {font-size: 12px; height: 20%; display: flex; align-items: center;}
+.pop-hd4b ul li div:nth-child(3) {width: 20%;}
+.pop-hd4b ul li div:nth-child(3) img {width: 85px; height: 65px;}
+.pop-hd4b ul li div:nth-child(4) {width: 10%; position: relative;}
+.pop-hd4b ul li div:nth-child(4) .button-al {display: flex; justify-content: center; align-items: center; width: 40px; height: 40px; 
+    font-size: 15px; font-weight: bold; border: none; position: absolute; top: 5px; left: -5px; transform: rotate(90deg);
+    letter-spacing: -8px;  border-radius: 50%; transition: all 0.3s ease-out;}
+/* 4설정 알림 메뉴 al-menu */
+.pop-hd4b ul li div:nth-child(4) ul {width: 250px; height: 90px;  position: absolute; top: 50px; left: -220px; 
+padding: 5px 0px; border-radius: 5px; z-index: 65;}
+.pop-hd4b ul li div:nth-child(4) ul li {width: 100%; height: 40px; display: flex;}
+.pop-hd4b ul li div:nth-child(4) ul li:hover {}
+/* 아이콘 박스 */
+.pop-hd4b ul li div:nth-child(4) ul li div:nth-child(1) {width: 50px; font-size: 28px; text-align: center; line-height: 30px;
+position: relative;}
+/* 텍스트 박스*/
+.pop-hd4b ul li div:nth-child(4) ul li div:nth-child(2) {width: 200px; font-size: 14px; display: flex; justify-content: center; align-items: flex-start;
+position: relative;}
+/* 1번째 아이콘 al-hide */
+.pop-hd4b ul li div:nth-child(4) ul li:nth-child(1) div:nth-child(1)::before {position: absolute; content: ''; top: 50%; left: 50%; transform: translate(-50%, -50%);
+width: 10px; height: 6px; border: 1px solid; border-radius: 50%;}
+.pop-hd4b ul li div:nth-child(4) ul li:nth-child(1) div:nth-child(1)::after {position: absolute; content: ''; top: 50%; left: 50%; transform: translate(-50%, -50%);
+width: 18px; height: 14px; border: 1px solid; border-radius: 50%;}
+/* 2번째 아이콘 */
+.pop-hd4b ul li div:nth-child(4) ul li:nth-child(2) div:nth-child(1)::before {content: ''; width: 6px; height: 15px; position: absolute; border-radius: 50%;
+border: 2px solid; top: 45%; left: 50%; transform: translate(-50%, -50%); 
+border-bottom: none;}
+.pop-hd4b ul li div:nth-child(4) ul li:nth-child(2) div:nth-child(1)::after {content: ''; top: 65%; left: 50%; transform: translate(-50%, -50%); position: absolute;
+border: 2px solid; width: 15px; height: 7px; border-radius: 20px; border-top: none;}
+.al-menu {display: none;}
+
+
+/* 내정보 로그인 창 */
+.login {display: none;}
+.login {width: 250px; height: 300px; position: fixed;  z-index: 62; background-color: rgb(60,60,60); 
+padding: 20px; top: 10px; right: 60px; border-radius: 20px; border: 1px solid #000;}
+.login h3 {color: #fff;  width: 100%;}
+.x {position: absolute; top: 10px; right: 10px; width: 20px; height: 20px; cursor: pointer; display: flex; color: #fff;
+justify-content: center; align-items: center; border-radius: 50%;}
+.x:hover {background-color: rgba(0,0,0,0.3); color: red;}
+.loginbox {width: 100%; display: flex; margin-top: 10px;}
+.loginbox ul {width: 100%; height: 100%; }
+.loginbox ul li {display: flex; justify-content: space-between; line-height: 1.4;}
+.loginbox ul li p {width: 20%; display: block; color: #fff; display: flex; justify-content: center; align-items: center;}
+.loginbox ul li span {width: 80%; display: block; color: #fff;
+display: flex; justify-content: flex-start; align-items: center;}
+.loginbox ul li:nth-child(4) p {color: red; font-weight: bold;}
+.loginbox ul li:nth-child(4) span{color: red; font-weight: bold;}
+.login p {font-size: 12px; color: green; margin: 5px 0px;}
+.login a {position: absolute; bottom: 10px; right: 10px; font-size: 15px; cursor: pointer; padding: 3px;
+color: #fff;}
+.login a:hover {background-color: rgba(0,0,0,0.3); color: red;}
+
+/* 메모 */
+.memo_area {resize: none; width: 100%; height: 35%; background-color: #000; color: rgb(240,240,240); outline: none;
+padding: 5px; font-size: 15px; cursor: default; overflow-y: hidden; border: 1px solid #111}
+.memo_btn {width: max-content; display: flex; gap: 5px;} /* 저장 수정버튼박스*/
+.memo_save:hover {background-color: rgba(0,0,0,0.3); color: red;}
+.memo_edit:hover {background-color: rgba(0,0,0,0.3); color: red;}
+.memo_save {width: max-content; height: max-content; background-color: transparent; color: #fff; cursor: pointer;
+border: 1px solid #000; padding: 3px; }
+.memo_edit {width: max-content; height: max-content; background-color: transparent; color: #fff; cursor: pointer;
+border: 1px solid #000; padding: 3px; }
+
+
+
+/* 좌측 팝업 레이아웃 */
+.pop-hd1 {position: fixed; z-index: 62; width: 240px; height: max-content;
+transition: all 0.2s;}
+.phd1 {width: 100%; height: 56px; display: flex;}
+/* phd1-a 좌측 햄버거 */
+.phd1-a {width: 60px; display: flex; justify-content: flex-end; align-items: center; cursor: pointer;}
+.phd1-aa {width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center;
+margin-right: 5px;}
+.phd1-aa:hover {}
+
+.phd1-aaa {width: 20px; height: 17px; position: relative;}
+.phd1-aaa span {position: absolute; width: 18px; height: 1px; left: 50%; transform: translate(-50%);
+display: block;}
+.phd1-aaa span:nth-child(1) {top: 0;}
+.phd1-aaa span:nth-child(2) {top: 50%; transform: translate(-50%, -50%);}
+.phd1-aaa span:nth-child(3) {bottom: 0;}
+
+/* phd2-b 좌측 로고 */
+.phd1-b {width: 130px; display: flex; justify-content: center; align-items: center;}
+.phd1-b a {display: flex; justify-content: center; align-items: center;}
+.phd1-b a sup {font-size: 10px; margin-top: -20px; }
+
+.phd1-b-icon {width: 28px; height: 20px; background-color: red; border-radius: 23%;
+display: flex; justify-content: center; align-items: center; padding-left: 5px;}
+.phd1-b-icon-1 {width: 0px; height: 0px; border-left: 4px solid transparent;
+border-right: 4px solid transparent; border-bottom: 8px solid #fff; transform: rotate(90deg);}
+.phd1-b-logo {padding-left: 0px; font-size: 22px; letter-spacing: -3px; 
+text-shadow: 1px 1px 2px rgba(0,0,0,0.5);}
+
+/* phd2 하단 메뉴 svg아이콘 */
+.phd2 {width: 240px; height: 100vh; padding: 10px; overflow-Y: hidden;}
+.phd2:hover {overflow-Y: scroll;}
+.phd2:hover::-webkit-scrollbar {width: 5px; }
+.phd2:hover::-webkit-scrollbar-thumb {background-color: rgb(100,100,100);}
+
+.phd2 h2 {width: 100%; height: 40px;}
+
+.phd2 li {display: flex; width: 215px; height: 40px; border-radius: 10px;}
+.phd2 li:hover {background-color: rgba(0,0,0,0.3);}
+.phd2 li div {width: 25%; display: flex; justify-content: center; align-items: center; } /* fill 색갈변경 */
+.phd2 li span {display: block; width: 75%; display: flex; align-items: center; font-size: 14px;}
+
+
+</style>
+</head>
+<body>
+<div id="wrap">
+    <!-- pop-bg 만능 팝업배경창 z-index: 50;-->
+    <div class="pop-bg"></div>
+    <!-- pop-voise 팝업 음성검색창 z-index: 62;-->
+    <div class="pop-voise">
+        <div>&#10006;</div>
+        <h3>음성을 인식할 수 없습니다. 다시 시도해 주세요
+        </h3>
+        <span></span>
+        <a href="#" class="unset"><div></div></a>
+        <p class="unset">다시 시도하려면 마이크를 탭하세요</p>
+    </div>
+    <!-- pop-hd4a 동영상 업로드 z-index: 64;-->
+    <div class="pop-hd4a">
+        <ul>
+            <li><span></span><p>동영상 업로드</p></li>
+            <li><span>&middot;</span><p>라이브 스트리밍 시작</p></li>
+            <li><span></span><p>게시물 작성</p></li>
+        </ul>
+    </div>
+    <!-- pop-hd4b 알림 z-index: 46;-->
+    <div class="pop-hd4b">
+        <h3>알림</h3><a href="#" class="pophd4b-more">&#x2699;</a>
+        <ul>
+            <li class="al-title"> <!--알람 타이틀 카드 시작-->
+                <div><img src="https://noncopyright.com/wp-content/uploads/2018/10/rawpixel-666934-unsplash.jpg" alt="call-logo"></div>
+                <div>
+                    <span>다른 사용자가 다음 댓글에 사용자가 다음 댓글에 좋아요사용자가 다음 댓글에 좋아요사용자가 다음 댓글에 좋아요사용자가 다음 댓글에 좋아요사용자가 다음 댓글에 좋아요사용자가 다음 댓글에 좋아요사용자가 다음 댓글에 좋아요사용자가 다음 댓글에 좋아요사용자가 다음 댓글에 좋아요사용자가 다음 댓글에 좋아요좋아요 표시를 했습니다.</span>
+                    <p>11 일 전</p>
+                </div>
+                <div><img src="https://noncopyright.com/wp-content/uploads/2018/10/rawpixel-666934-unsplash.jpg" alt="call-ban"></div>
+                <div><div class="button-al">&#12539;&#12539;&#12539;</div> <!--4설정 알림-->
+                    <ul class="al-menu">
+                        <li class="al-hide"><div>/</div><div>이 알림 숨기기</div></li>
+                        <li><div>/</div><div>댓글 활동 알림 사용 중지</div></li>
+                    </ul>
+                </div>
+            </li> <!--알람 타이틀 카드 끝-->
+            <li class="al-title"> <!--알람 타이틀 카드 시작-->
+                <div><img src="https://noncopyright.com/wp-content/uploads/2018/10/rawpixel-666934-unsplash.jpg" alt="call-logo"></div>
+                <div>
+                    <span>다른 사용자가 다음 댓글에 좋아요 표시를 했습니다.</span>
+                    <p>11 일 전</p>
+                </div>
+                <div><img src="https://noncopyright.com/wp-content/uploads/2018/10/rawpixel-666934-unsplash.jpg" alt="call-ban"></div>
+                <div><div class="button-al">&#12539;&#12539;&#12539;</div> <!--4설정 알림-->
+                    <ul class="al-menu">
+                        <li class="al-hide"><div>/</div><div>이 알림 숨기기</div></li>
+                        <li><div>/</div><div>댓글 활동 알림 사용 중지</div></li>
+                    </ul>
+                </div>
+            </li> <!--알람 타이틀 카드 끝-->
+            <li class="al-title"> <!--알람 타이틀 카드 시작-->
+                <div><img src="https://noncopyright.com/wp-content/uploads/2018/10/rawpixel-666934-unsplash.jpg" alt="call-logo"></div>
+                <div>
+                    <span>다른 사용자가 다음 댓글에 좋아요 표시를 했습니다.</span>
+                    <p>11 일 전</p>
+                </div>
+                <div><img src="https://noncopyright.com/wp-content/uploads/2018/10/rawpixel-666934-unsplash.jpg" alt="call-ban"></div>
+                <div><div class="button-al">&#12539;&#12539;&#12539;</div> <!--4설정 알림-->
+                    <ul class="al-menu">
+                        <li class="al-hide"><div>/</div><div>이 알림 숨기기</div></li>
+                        <li><div>/</div><div>댓글 활동 알림 사용 중지</div></li>
+                    </ul>
+                </div>
+            </li> <!--알람 타이틀 카드 끝-->
+        </ul>
+    </div>  <!-- pop-hd4b 알림 끝-->
+    <!-- login 로그인 페이지 z-index: 62;-->
+    <form class="login">
+        <h3>Administrator</h3>
+        <div class="x">X</div>
+        <div class="loginbox">
+            <ul>
+                <li><p class="p_country">국가</p><span class="span_country"></span></li>
+                <li><p class="p_region">지역</p><span class="span_region"></span></li>
+                <li><p class="p_city">도시</p><span class="span_city"></span></li>
+                <li><p class="p_ip">IP</p><span class="span_ip"></span></li>
+            </ul>
+        </div>
+        <p>초기 암호는 admin</p>
+        <a onclick="logoutdate()" class="unset logout">Logout</a>
+        <textarea class="memo_area" placeholder="간단메모 70자 제한"></textarea>
+        <!-- 메모 -->
+        <div class="memo_btn">
+        <button type="button" class="memo_save">저장</button>
+        <button type="button" class="memo_edit">수정</button>
+        </div>
+    </form> <!-- login 로그인 페이지 끝-->
+
+    <!--좌측 팝업 레이아웃 z-index: 62;-->
+    <div class="pop-hd1">
+        <div class="phd1"> <!--햄버거 메뉴-->
+            <div class="phd1-a">
+                <div class="phd1-aa">
+                    <div class="phd1-aaa">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="phd1-b"> <!-- 로고 아이콘-->
+                <a href="#">
+                    <div class="phd1-b-icon">
+                        <div class="phd1-b-icon-1"></div>
+                    </div>
+                   <h1 class="phd1-b-logo">YouTube</h1><sup>KR</sup>
+                </a>
+            </div>
+        </div>
+        <ul class="phd2"> <!--하단 메뉴 svg아이콘-->
+            <li><div>
+                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 21V10.08l8-6.96 8 6.96V21h-6v-6h-4v6H4z" fill="currentColor"/>
+                </svg></div><span>홈</span></li>
+            <li><div>
+                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 14.65v-5.3L15 12l-5 2.65zm7.77-4.33-1.2-.5L18 9.06c1.84-.96 2.53-3.23 1.56-5.06s-3.24-2.53-5.07-1.56L6 6.94c-1.29.68-2.07 2.04-2 3.49.07 1.42.93 2.67 2.22 3.25.03.01 1.2.5 1.2.5L6 14.93c-1.83.97-2.53 3.24-1.56 5.07.97 1.83 3.24 2.53 5.07 1.56l8.5-4.5c1.29-.68 2.06-2.04 1.99-3.49-.07-1.42-.94-2.68-2.23-3.25zm-.23 5.86-8.5 4.5c-1.34.71-3.01.2-3.72-1.14-.71-1.34-.2-3.01 1.14-3.72l2.04-1.08v-1.21l-.69-.28-1.11-.46c-.99-.41-1.65-1.35-1.7-2.41-.05-1.06.52-2.06 1.46-2.56l8.5-4.5c1.34-.71 3.01-.2 3.72 1.14.71 1.34.2 3.01-1.14 3.72L15.5 9.26v1.21l1.8.74c.99.41 1.65 1.35 1.7 2.41.05 1.06-.52 2.06-1.46 2.56z" fill="currentColor"/>
+                </svg></div><span>쇼츠</span></li>
+            <li><div>
+                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 18v-6l5 3-5 3zm7-15H7v1h10V3zm3 3H4v1h16V6zm2 3H2v12h20V9zM3 10h18v10H3V10z" fill="currentColor"/>
+                </svg></div><span>구독</span></li>
+            <li style="margin-top: 40px"><div>나 ></div><span></span></li>
+            <li><div>
+                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 20h14v1H3V6h1v14zM6 3v15h15V3H6zm2.02 14c.36-2.13 1.93-4.1 5.48-4.1s5.12 1.97 5.48 4.1H8.02zM11 8.5a2.5 2.5 0 015 0 2.5 2.5 0 01-5 0zm3.21 3.43A3.507 3.507 0 0017 8.5C17 6.57 15.43 5 13.5 5S10 6.57 10 8.5c0 1.69 1.2 3.1 2.79 3.43-3.48.26-5.4 2.42-5.78 5.07H7V4h13v13h-.01c-.38-2.65-2.31-4.81-5.78-5.07z" fill="currentColor"/>
+                </svg></div><span>내 채널</span></li>
+            <li><div>
+                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14.97 16.95 10 13.87V7h2v5.76l4.03 2.49-1.06 1.7zM22 12c0 5.51-4.49 10-10 10S2 17.51 2 12h1c0 4.96 4.04 9 9 9s9-4.04 9-9-4.04-9-9-9C8.81 3 5.92 4.64 4.28 7.38c-.11.18-.22.37-.31.56L3.94 8H8v1H1.96V3h1v4.74c.04-.09.07-.17.11-.25.11-.22.23-.42.35-.63C5.22 3.86 8.51 2 12 2c5.51 0 10 4.49 10 10z" fill="currentColor"/>
+                </svg></div><span>시청 기록</span></li>
+            <li><div>
+                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 7H2v1h20V7zm-9 5H2v-1h11v1zm0 4H2v-1h11v1zm2 3v-8l7 4-7 4z" fill="currentColor"/>
+                </svg></div><span>재생목록</span></li>
+            <li><div>
+                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="m10 8 6 4-6 4V8zm11-5v18H3V3h18zm-1 1H4v16h16V4z" fill="currentColor"/>
+                </svg></div><span>내 동영상</span></li>
+            <li><div>
+                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14.97 16.95 10 13.87V7h2v5.76l4.03 2.49-1.06 1.7zM12 3c-4.96 0-9 4.04-9 9s4.04 9 9 9 9-4.04 9-9-4.04-9-9-9m0-1c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2z" fill="currentColor"/>
+                </svg></div><span>나중에 볼 동영상</span></li>
+            <li><div>
+                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18.77,11h-4.23l1.52-4.94C16.38,5.03,15.54,4,14.38,4c-0.58,0-1.14,0.24-1.52,0.65L7,11H3v10h4h1h9.43 c1.06,0,1.98-0.67,2.19-1.61l1.34-6C21.23,12.15,20.18,11,18.77,11z M7,20H4v-8h3V20z M19.98,13.17l-1.34,6 C18.54,19.65,18.03,20,17.43,20H8v-8.61l5.6-6.06C13.79,5.12,14.08,5,14.38,5c0.26,0,0.5,0.11,0.63,0.3 c0.07,0.1,0.15,0.26,0.09,0.47l-1.52,4.94L13.18,12h1.35h4.23c0.41,0,0.8,0.17,1.03,0.46C19.92,12.61,20.05,12.86,19.98,13.17z" fill="currentColor"/>
+                </svg></div><span>좋아요 표시한 동영상</span></li>
+            <li style="margin-top: 40px"><div>구독</div><span></span></li>
+            <li><div>
+                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 3.87v9.77C19 17.7 15.86 21 12 21s-7-3.3-7-7.37v-.13c0-1.06.22-2.13.62-3.09.5-1.19 1.29-2.21 2.27-2.97.85-.66 1.83-1.14 2.87-1.65.39-.19.77-.38 1.15-.58.36-.19.72-.38 1.08-.56v3.22l1.55-1.04L19 3.87M20 2l-6 4V3c-.85.44-1.7.88-2.55 1.33-1.41.74-2.9 1.34-4.17 2.32-1.13.87-2.02 2.05-2.58 3.37-.46 1.09-.7 2.29-.7 3.48v.14C4 18.26 7.58 22 12 22s8-3.74 8-8.36V2zM9.45 12.89 14 10v5.7c0 1.82-1.34 3.3-3 3.3s-3-1.47-3-3.3c0-1.19.58-2.23 1.45-2.81z" fill="currentColor"/>
+                </svg></div><span>인기 급상승</span></li>
+            <li><div>
+                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 8c0 2.76 2.24 5 5 5s5-2.24 5-5h-1c0 2.21-1.79 4-4 4s-4-1.79-4-4H7zm9.9-2c-.46-2.28-2.48-4-4.9-4S7.56 3.72 7.1 6H4v14c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V6h-3.1zM12 3c1.86 0 3.43 1.27 3.87 3H8.13c.44-1.73 2.01-3 3.87-3zm7 17c0 .55-.45 1-1 1H6c-.55 0-1-.45-1-1V7h14v13z" fill="currentColor"/>
+                </svg></div><span>쇼핑</span></li>
+            <li><div>
+                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 4v9.38c-.73-.84-1.8-1.38-3-1.38-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V8h6V4h-7zM9 19c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm9-12h-5V5h5v2z" fill="currentColor"/>
+                </svg></div><span>음악</span></li>
+            <li><div>
+                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="m22.01 4.91-.5-2.96L1.64 5.19 2 8v13h20V8H3.06l18.95-3.09zM5 9l1 3h3L8 9h2l1 3h3l-1-3h2l1 3h3l-1-3h3v11H3V9h2z" fill="currentColor"/>
+                </svg></div><span>영화</span></li>
+            <li><div>
+                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 12c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zM8.48 8.45l-.71-.7C6.68 8.83 6 10.34 6 12s.68 3.17 1.77 4.25l.71-.71C7.57 14.64 7 13.39 7 12s.57-2.64 1.48-3.55zm7.75-.7-.71.71c.91.9 1.48 2.15 1.48 3.54s-.57 2.64-1.48 3.55l.71.71C17.32 15.17 18 13.66 18 12s-.68-3.17-1.77-4.25zM5.65 5.63l-.7-.71C3.13 6.73 2 9.24 2 12s1.13 5.27 2.95 7.08l.71-.71C4.02 16.74 3 14.49 3 12s1.02-4.74 2.65-6.37zm13.4-.71-.71.71C19.98 7.26 21 9.51 21 12s-1.02 4.74-2.65 6.37l.71.71C20.87 17.27 22 14.76 22 12s-1.13-5.27-2.95-7.08z" fill="currentColor"/>
+                </svg></div><span>실시간</span></li>
+            <li><div>
+                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 12H8v2H6v-2H4v-2h2V8h2v2h2v2zm7 .5c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5.67 1.5 1.5 1.5 1.5-.67 1.5-1.5zm3-3c0-.83-.67-1.5-1.5-1.5S17 8.67 17 9.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5zm-3.03-4.35-4.5 2.53-.49.27-.49-.27-4.5-2.53L3 7.39v6.43l8.98 5.04 8.98-5.04V7.39l-3.99-2.24m0-1.15 4.99 2.8v7.6L11.98 20 2 14.4V6.8L6.99 4l4.99 2.8L16.97 4z" fill="currentColor"/>
+                </svg></div><span>게임</span></li>
+            <li><div>
+                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 5V2H6v3H3v6l3.23 1.61c.7 2.5 2.97 4.34 5.69 4.38L8 19v3h8v-3l-3.92-2.01c2.72-.04 4.99-1.88 5.69-4.38L21 11V5h-3zM6 11.38l-2-1V6h2v5.38zM15 21H9v-1.39l3-1.54 3 1.54V21zm2-10c0 2.76-2.24 5-5 5s-5-2.24-5-5V3h10v8zm3-.62-2 1V6h2v4.38z" fill="currentColor"/>
+                </svg></div><span>스포츠</span></li>
+            <li><div>
+                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 21h-2.28c-.35.6-.98 1-1.72 1s-1.38-.4-1.72-1H8v-1h8v1zm4-11c0 2.96-1.61 5.54-4 6.92V19H8v-2.08C5.61 15.54 4 12.96 4 10c0-4.42 3.58-8 8-8s8 3.58 8 8zm-5 8v-1.66l.5-.29C17.66 14.8 19 12.48 19 10c0-3.86-3.14-7-7-7s-7 3.14-7 7c0 2.48 1.34 4.8 3.5 6.06l.5.28V18h6z" fill="currentColor"/>
+                </svg></div><span>학습 프로그램</span></li>
+            <li><div>
+                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 12c0-3.31 2.69-6 6-6s6 2.69 6 6c0 1.66-.67 3.16-1.77 4.25l-.71-.71C16.44 14.63 17 13.38 17 12c0-2.76-2.24-5-5-5s-5 2.24-5 5c0 1.38.56 2.63 1.47 3.54l-.71.71C6.67 15.16 6 13.66 6 12zm8 0c0-1.1-.9-2-2-2s-2 .9-2 2c0 .74.4 1.38 1 1.72V22h2v-8.28c.6-.34 1-.98 1-1.72zm-9.06 7.08.71-.71C4.01 16.74 3 14.49 3 12c0-4.96 4.04-9 9-9s9 4.04 9 9c0 2.49-1.01 4.74-2.65 6.37l.71.71C20.88 17.27 22 14.77 22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 2.77 1.12 5.27 2.94 7.08z" fill="currentColor"/>
+                </svg></div><span>팟캐스트</span></li>
+            <li style="margin-top: 40px"><span>YouTube 더보기</span></li>
+            <li><div>
+                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect y="4" width="24px" height="16px" rx="4" ry="4" fill="#FF0000"/>
+                    <polygon points="10,8 16,12 10,16" fill="white"/>
+                </svg></div><span>YouTube Preimium</span></li>
+            <li><div>
+                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect y="4" width="24px" height="16px" rx="4" ry="4" fill="#FF0000"/>
+                    <polygon points="10,8 16,12 10,16" fill="white"/>
+                </svg></div><span>YouTube 스튜디오</span></li>
+            <li><div>
+                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect y="4" width="24px" height="16px" rx="4" ry="4" fill="#FF0000"/>
+                    <polygon points="10,8 16,12 10,16" fill="white"/>
+                </svg></div><span>YouTube Music</span></li>
+            <li><div>
+                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect y="4" width="24px" height="16px" rx="4" ry="4" fill="#FF0000"/>
+                    <polygon points="10,8 16,12 10,16" fill="white"/>
+                </svg></div><span>YouTube Kids</span></li>
+            <li style="margin-top: 40px"><div>
+                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 9.5c1.38 0 2.5 1.12 2.5 2.5s-1.12 2.5-2.5 2.5-2.5-1.12-2.5-2.5 1.12-2.5 2.5-2.5m0-1c-1.93 0-3.5 1.57-3.5 3.5s1.57 3.5 3.5 3.5 3.5-1.57 3.5-3.5-1.57-3.5-3.5-3.5zM13.22 3l.55 2.2.13.51.5.18c.61.23 1.19.56 1.72.98l.4.32.5-.14 2.17-.62 1.22 2.11-1.63 1.59-.37.36.08.51c.05.32.08.64.08.98s-.03.66-.08.98l-.08.51.37.36 1.63 1.59-1.22 2.11-2.17-.62-.5-.14-.4.32c-.53.43-1.11.76-1.72.98l-.5.18-.13.51-.55 2.24h-2.44l-.55-2.2-.13-.51-.5-.18c-.6-.23-1.18-.56-1.72-.99l-.4-.32-.5.14-2.17.62-1.21-2.12 1.63-1.59.37-.36-.08-.51c-.05-.32-.08-.65-.08-.98s.03-.66.08-.98l.08-.51-.37-.36L3.6 8.56l1.22-2.11 2.17.62.5.14.4-.32c.53-.44 1.11-.77 1.72-.99l.5-.18.13-.51.54-2.21h2.44M14 2h-4l-.74 2.96c-.73.27-1.4.66-2 1.14l-2.92-.83-2 3.46 2.19 2.13c-.06.37-.09.75-.09 1.14s.03.77.09 1.14l-2.19 2.13 2 3.46 2.92-.83c.6.48 1.27.87 2 1.14L10 22h4l.74-2.96c.73-.27 1.4-.66 2-1.14l2.92.83 2-3.46-2.19-2.13c.06-.37.09-.75.09-1.14s-.03-.77-.09-1.14l2.19-2.13-2-3.46-2.92.83c-.6-.48-1.27-.87-2-1.14L14 2z" fill="currentColor"/>
+                </svg></div><span>설정</span></li>
+            <li><div>
+                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="m13.18 4 .24 1.2.16.8H19v7h-5.18l-.24-1.2-.16-.8H6V4h7.18M14 3H5v18h1v-9h6.6l.4 2h7V5h-5.6L14 3z" fill="currentColor"/>
+                </svg></div><span>신고 기록</span></li>
+            <li><div>
+                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.36 9.96c0 1.09-.67 1.67-1.31 2.24-.53.47-1.03.9-1.16 1.6l-.04.2H11.1l.03-.28c.14-1.17.8-1.76 1.47-2.27.52-.4 1.01-.77 1.01-1.49 0-.51-.23-.97-.63-1.29-.4-.31-.92-.42-1.42-.29-.59.15-1.05.67-1.19 1.34l-.05.28H8.57l.06-.42c.2-1.4 1.15-2.53 2.42-2.87 1.05-.29 2.14-.08 2.98.57.85.64 1.33 1.62 1.33 2.68zM12 18c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zm0-15c-4.96 0-9 4.04-9 9s4.04 9 9 9 9-4.04 9-9-4.04-9-9-9m0-1c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2z" fill="currentColor"/>
+                </svg></div><span>고객센터</span></li>
+            <li><div>
+                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 14h-2v-2h2v2zm0-9h-2v6h2V5zm6-2H5v16.59l3.29-3.29.3-.3H19V3m1-1v15H9l-5 5V2h16z" fill="currentColor"/>
+                </svg></div><span>의견 보내기</span></li>
+            <li><div></div><span></span></li>
+
+            
+        </ul>
+    </div><!--좌측 팝업 레이아웃 끝-->
+
+    <header id="header"> <!--hedaer 헤더-->
+        <div class="hd-f">
+            <div class="hd1">
+                <div class="hd1-a"> <!--/* hd1 좌측헤더 햄버거 */-->
+                    <div class="hd1-aa">
+                        <div>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hd1-b">
+                    <a href="#">
+                        <div class="logo-icon">
+                            <div class="logo-icon-a"></div>
+                        </div>
+                       <h1 class="logo">YouTube</h1><sup>KR</sup>
+                    </a>
+                </div>
+            </div>
+            <div class="hd2"> <!--/* hd2 검색창*/-->
+                <div class="hd2-a">
+                    <div class="text-left"></div>
+                    <input type="text" placeholder="검색">
+                    <span>⌨</span>
+                    <div class="text-right">&#10006;</div>                 
+                </div>
+
+                <div class="hd2-b"> <!--검색창 우측 아이콘 음성-->
+                    <div></div>
+                    <a href="#"><div></div></a>
+                </div>
+            </div>
+
+            <div class="hd3"> <!--/* hd3 반응형 헤더 */-->
+                <div class="hd3-a"><div class="hd3-aa"></div></div>
+                <div class="hd3-b"><div class="hd3-bb"><div class="hd3-bbb"></div></div></div>
+            </div>
+
+            <div class="hd4"> <!--/* hd4 우측 헤더 */-->
+                <div class="hd4-a">+</div>
+                <div class="hd4-b"></div>
+                <div class="hd4-c"></div>
+            </div>
+        </div>
+    </header>
+
+    <main id="main"> <!-- main 컨텐츠 시작-->
+
+        <div id="ban">
+            <div class="ban-f">
+                <a href="#"><div></div><span>홈</span></a>
+                <a href="#"><div></div><span>Shorts</span></a>
+                <a href="#"><div></div><span>구독</span></a>
+                <a href="#"><div></div><span>나</span></a>
+                <div class="ban_btn">
+                <a href="MyNote.zip" class="unset ban_help"><div></div><p>Help</p></a>
+                <a href="#" class="unset ban_al"><div></div><span>al +</span></a>
+                <a href="#" class="unset ban_co"><div>-</div><div>+</div><span>cont</span></a>
+                <a href="#" class="unset ban_dark"><div>&#x2600;</div><span></span></a>
+                </div>
+            </div>
+        </div>
+
+    <div id="wc"> <!-- wc 링크,동영상 시작-->
+
+        <div id="link">
+            <div class="link-f">
+                <div class="link-left"><span>&#x003C;</span></div>
+                <div class="link-right"><span>&#x003E;</span></div>
+                <ul>
+                    <li><a href="#">해당 페이지는</a></li>
+                    <li><a href="#">가상 유튜브로</a></li>
+                    <li><a href="#">실제 페이지가</a></li>
+                    <li><a href="#">아닙 니다</a></li>
+                    <li><a href="#">감사합니다</a></li>
+                    <li><a href="#">감사합니다</a></li>
+                    <li><a href="#">감사합니다</a></li>
+                    <li><a href="#">감사합니다</a></li>
+                    <li><a href="#">감사합니다</a></li>
+                    <li><a href="#">감사합니다</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="images">
+            <div class="img">
+
+                <div class="im"><a href="#" target="_blank"> <!-- .im 동영상 start-->
+                    <img src="https://i1.sndcdn.com/artworks-y73A5yNdhPLEzIDv-G8Tidg-t500x500.jpg" alt="vd">
+                        <div class="icons">
+                            <div class="icon i-v">음소거</div>
+                            <div class="icon i-c">자막</div>
+                            <div class="icon i-t"></div>
+                            <div class="icon-var"></div>
+                        </div>
+                    </a>
+                    <div class="im-title"><a href="#" target="_blank"> <!--.im-title동영상 카드-->
+                        <div class="im-a">
+                            <img src="https://i1.sndcdn.com/artworks-y73A5yNdhPLEzIDv-G8Tidg-t500x500.jpg" alt="im-a-img">
+                        </div>
+                        <div class="im-b">
+                            <strong>API not find. </strong>
+                            <p>####</p>
+                            <span>조회수 ##회 &middot; YY-MM-DD일 전</span>
+                        </div>
+                        <div class="im-c">
+                            <div class="button-c">&#12539;&#12539;&#12539;</div>
+                        </div>
+                    </a></div> 
+                </div>  <!--동영상 End-->
+         
+            </div> <!--img End-->
+        </div> <!--images End-->
+    </main>
+</div>
+<script>
+
+
+
+    memo(); //메모
+    function memo(){ 
+        let js_memoarea = document.querySelector(".memo_area");
+        let js_memosave = document.querySelector(".memo_save");
+        let js_memoedit = document.querySelector(".memo_edit");
+        // 저장버튼
+        js_memosave.addEventListener("click", function(){
+            js_memoarea.setAttribute("readonly","readonly");
+            js_memoarea.style.backgroundColor = "transparent";
+            js_memoarea.style.color = "green";
+            js_memosave.style.display = "none";
+            
+        })
+        // 수정버튼//
+        js_memoedit.addEventListener("click", function(){
+            js_memoarea.removeAttribute("readonly");
+            js_memoarea.focus();
+            js_memoarea.style.backgroundColor = "#000";
+            js_memoarea.style.color = "#fff";
+            js_memosave.style.display = "block";
+        })
+        // 70자제한
+        js_memoarea.addEventListener("input", function(){
+            if(js_memoarea.value.length > 70){
+                js_memoarea.value = js_memoarea.value.slice(0, 70);
+            }
+        });
+    };
+
+
+
+
+
+
+    // 햄버거 버튼 누를 시 배너와 백그라운드 나오고 닫힘 //
+    ham();
+    function ham(){
+        let js_phd1 = document.querySelector(".pop-hd1");
+        let js_phd1aa = document.querySelector(".phd1-aa");
+        let js_hd1aa = document.querySelector(".hd1-aa");
+        js_phd1.style.transform = "translateX(-240px)";
+
+        js_hd1aa.addEventListener("click", function(){
+            js_phd1.style.transform = "translateX(0px)";
+            fadeIn(js_popbg);
+        });
+        js_phd1aa.addEventListener("click", function(){
+            js_phd1.style.transform = "translateX(-240px)";
+            fadeOut(js_popbg);
+        });
+        document.addEventListener("mouseup", function(e){
+            if(!js_phd1.contains(e.target) && e.target !== js_hd1aa){
+                js_phd1.style.transform = "translateX(-240px)";
+            };
+        });
+    };
+
+
+    // 화이트 다크 모드 함수
+
+    function white(){
+        document.getElementById("header").classList.remove("dark");
+        document.getElementById("ban").classList.remove("dark");
+        document.getElementById("link").classList.remove("dark");
+        document.getElementById("wc").classList.remove("dark");
+        document.getElementById("images").classList.remove("dark");
+        document.getElementById("wrap").classList.remove("dark");
+
+    }
+    function dark(){
+        document.getElementById("header").classList.add("dark");
+        document.getElementById("ban").classList.add("dark");
+        document.getElementById("link").classList.add("dark");
+        document.getElementById("wc").classList.add("dark");
+        document.getElementById("images").classList.add("dark");
+        document.getElementById("wrap").classList.add("dark");
+    }
+
+
+    // 좌측 하단 버튼 
+    banf_3btn();
+    function banf_3btn(){
+        let js_bandark = document.querySelector(".ban_dark");
+        let js_banco = document.querySelector(".ban_co");
+        let toggle = false;
+        // 밤 낮 전환//
+        js_bandark.addEventListener("click", function(){
+            toggle = !toggle;
+            if(toggle){
+                js_bandark.querySelector("div").style.transform = "translateX(16px)"
+                js_bandark.querySelector("span").textContent = "밤";
+                fadeIn(js_popbg);
+                fadeOut(js_popbg);
+                
+                setTimeout(function(){
+                    js_bandark.querySelector("div").innerHTML = "&#x1f319;"
+                    js_bandark.querySelector("span").textContent = "";
+                    dark();
+                    
+                },400);
+            } else {
+                js_bandark.querySelector("div").style.transform = "translateX(-16px)"
+                js_bandark.querySelector("span").textContent = "낮";
+                fadeIn(js_popbg);
+                fadeOut(js_popbg);
+                
+                setTimeout(function(){
+                    js_bandark.querySelector("div").innerHTML = "&#x2600;"
+                    js_bandark.querySelector("span").textContent = "";
+                    white();
+
+                },400);
+            }
+        });
+        /*// 컨텐츠 증가 감소 제이쿼리 81줄
+        js_banco.querySelectorAll("div")[0].addEventListener("click", function(){
+            let js_img = document.querySelector(".img");
+            let js_im = document.querySelector(".im");
+            let cloneIm = js_im.cloneNode(true);
+            js_img.removeChild(js_img.lastChild);
+        })
+        js_banco.querySelectorAll("div")[1].addEventListener("click", function(){
+            let js_img = document.querySelector(".img");
+            let js_im = document.querySelector(".im");
+            let cloneIm = js_im.cloneNode(true);
+            js_img.appendChild(cloneIm);
+        }) */
+    };
+
+
+    logip(); // 불러오기 로그인정보 ip주소
+    function logip(){ //
+        //ip 출력 loginbox 박스안 span에/        
+        let js_span_country = document.querySelector(".span_country");
+        let js_span_region = document.querySelector(".span_region");
+        let js_span_city = document.querySelector(".span_city");
+        let js_span_ip = document.querySelector(".span_ip");
+        const sc = document.createElement("script"); // 새로운 스크립트
+        sc.src = "https://ipinfo.io?callback=callback"; // 링크
+        document.body.appendChild(sc); //sc만들고
+        document.body.removeChild(sc); //sc만들고
+        window.callback = function(data){ //윈도우에 콜백
+            js_span_country.textContent = translang(data.country);
+            js_span_region.textContent = translang(data.region);
+            js_span_city.textContent = translang(data.city);
+            js_span_ip.textContent = translang(data.ip);
+        } //콜백불러와
+
+        // 수동번역 함수
+        function translang(lang){
+            let country = {
+                'US': '미국',
+                'KR': '대한민국',
+                'Gyeonggi-do': '경기도',
+                'Incheon': '인천',
+                'Seoul': '서울',
+            };
+            return country[lang] || lang;
+        };
+    }
+
+
+    // 로그인창호출 함수 .hd4-c 클릭 login 호출 //
+    function loginon(){
+        let js_hd4c = document.querySelector(".hd4-c");
+        let js_login = document.querySelector(".login");
+        let js_x = document.querySelector(".login .x");
+        
+            js_login.style.display = "block";
+            fadeIn(js_popbg);
+
+        js_x.addEventListener("click", function(){
+            console.log("x실행")
+            Ceffect(js_x);
+            js_login.style.display = "none";
+            fadeOut(js_popbg);
+        });
+
+        document.addEventListener("mouseup", function(e){
+            if(!js_login.contains(e.target) && e.target !== js_hd4c){
+                js_login.style.display = "none";
+            }
+        });
+    };
+    
+    // 관리자 암호 //
+    let va_admin = "admin";
+    // 페이지 정의 //
+    let Test_0 = "../YouTube-Test/Test-0 (main).html"; //메인페이지//
+    let Test_1 = "../YouTube-Test/Test-1.html"; //로그인화면//
+    let Test_2 = "../YouTube-Test/Test-2.html"; //회원가입화면//
+    // 로그인 //
+    window.onload = function(){
+        login();
+    }
+
+
+    // 관리자 로그인데이터 할 경우 보여질 내용 //
+    function login(){
+        let keys = Object.keys(localStorage); // 로컬스토리지에있는 모든 키값을 찾음
+        let this_admin = false; //관리자 여부 판별
+        let this_ues = null; // 로그인 사용자 ID를 저장 
+        //로컬 스트리지의 모든 키 값을 쌍으로 순회
+        for (let key of keys){
+            let value = localStorage.getItem(key); // 각 키에 해당하는 값을 가져옴
+            //관리자 계정일경우//
+            if(key === "ID" && value === "admin"){
+                this_admin = true; // 관리자일 경우 플래그 설정
+                this_ues = value;  // 로그인된 사용자 ID 설정
+                break; // 관리자 찾앗을경우 순회 종료
+            } else if (key !== "ID" && value){
+                this_ues = value;  // 유저 설정
+            }
+        }
+        // 로그인 사용자가 있고 없고  있다면 그게 어드민이냐 유저냐 확인//
+        if(this_ues !== null){
+            if(this_admin){ 
+                adm_login(); // 관리자 호출 //
+                
+            } else {
+                ues_login(); // 유저 호출 //
+               }
+            } else {
+                //alert(`방문 감사합니다 회원가입 / 관리자로그인 부탁드립니다`) // 사용자 호출 //
+            }
+    };
+
+
+    // 관리자 호출 //
+    function adm_login(){
+       
+        let admin_value = localStorage.getItem("ID"); //로컬 스토리지 key의 value 를 admin_PW로 선언//
+        alert(`관리자모드입니다 ${admin_value}`);
+        document.querySelector(".hd4-c").style.border = "2px solid red";
+        
+        v_0(); //동영상 api나머지//
+        v_1(); 
+        v_2();
+        v_3();
+        v_4();
+        v_5();
+        v_6();
+    };
+
+    // 유저 호출//
+    function ues_login(){
+        let keys = Object.keys(localStorage); // 모든키를 가져ㅂ옴
+        let admin_value = localStorage.getItem("ID"); //로컬 스토리지 key의 value 를 admin_PW로 선언//
+        document.querySelector(".login > h3").textContent = "Uesr";
+        alert(`유저 ${keys}님 좀더 많은 영상을 보고싶다면 관리자로그인 해주세요`);
+        v_0();
+        v_1(); 
+    };
+     
+
+    // 임시 로그아웃 //
+    logoff();
+    function logoff(){
+        let js_linklast = document.querySelector(".link-f ul li:nth-child(4)");
+        js_linklast.addEventListener("click", function(){
+            logoutdate();
+        })
+    };
+
+
+    // 로그아웃 할 경우 //
+    function logoutdate(){
+        let keys = Object.keys(localStorage);
+        let ID = localStorage.getItem("ID");
+        if (ID){
+            localStorage.clear();
+            alert(`안녕히가십시오 관리자 ${ID}님`);
+            location.reload();
+            console.log("로그아웃");
+        } else {
+            localStorage.clear();
+            alert(`안녕히가십시오 ${keys}님`);
+            location.reload();
+            console.log("로그아웃");
+        }
+        
+    };
+
+    // 로그온 and 내정보창 호출  //
+    logon();
+    function logon(){
+        document.querySelector(".hd4-c").addEventListener("click", function(){
+            if(!localStorage.length > 0){ //키값 없을경우 로그인페이지로//
+                window.open(Test_1, '_blank');
+            } else {
+                loginon();
+            }
+            
+        });
+    };
+
+
+
+
+
+    // 임시 pophd4b-more, 좌측하단 알람 클릭시 al-title 추가 
+    let js_pophd4bmore = document.querySelector(".pophd4b-more");
+    let js_banal = document.querySelector(".ban_al");
+    let js_altitle_2 = document.querySelectorAll(".al-title")[2];
+    js_altitle_2.style.display = "none";
+    js_pophd4bmore.addEventListener("click", function(e){
+        e.preventDefault();
+        let js_pophd4b_ul = document.querySelector(".pop-hd4b ul");
+        let js_altitle_cl = js_altitle_2.cloneNode(true);
+        js_altitle_cl.style.display = "flex";
+        js_pophd4b_ul.appendChild(js_altitle_cl);
+        on_al();
+    });
+    // 임시 pophd4b-more, 좌측하단 알람 클릭시 al-title 추가 
+    js_banal.addEventListener("click", function(e){
+        e.preventDefault();
+        let js_pophd4b_ul = document.querySelector(".pop-hd4b ul");
+        let js_altitle_cl = js_altitle_2.cloneNode(true);
+        js_altitle_cl.style.display = "flex";
+        js_pophd4b_ul.appendChild(js_altitle_cl);
+        on_al();
+    });
+
+    // 이벤트 위임처리 pophd4b ul내부 button-al 클릭시 그다음 nemenu 호출 //
+    document.querySelector(".pop-hd4b ul").addEventListener("click", function(e) {
+        if(e.target.classList.contains("button-al")){
+            Ceffect(e.target);
+            e.stopPropagation();
+            let js_Palmenu = e.target.nextElementSibling;
+            js_Palmenu.style.display = (js_Palmenu.style.display === "block") ? "none" : "block";
+
+            document.querySelectorAll(".button-al").forEach(function(ne){
+                if(ne !== e.target){
+                    let nemenu = ne.nextElementSibling;
+                    nemenu.style.display = "none";
+                }
+            });
+        }
+    });
+    // 닫기 
+    document.addEventListener("click", function(e){
+        document.querySelectorAll(".button-al").forEach(function(buttonAl){
+            let js_Palmenu = buttonAl.nextElementSibling;
+            js_Palmenu.style.display = "none";
+        });
+    });
+
+
+    function on_al(){
+    // 해당 알람 숨기기 클릭시  해당 알림카드 삭제 
+        let js_alhide = document.querySelectorAll(".al-hide");
+        js_alhide.forEach(function(hideal){
+            hideal.addEventListener("click", function(){
+                hideal.closest(".al-title").remove();
+            })
+        });
+    }; 
+    
+
+        /* 클릭 이펙트 Ceffect(대상명) 끌어서 쓰기 */
+        function Ceffect(et){
+        et.addEventListener("mousedown", function(){
+            et.style.backgroundColor = 'rgba(0,0,0,0.4)';
+            et.style.border = '1px solid #000';            
+        });
+        et.addEventListener("mouseup", function(){
+            et.style.backgroundColor = '';
+            et.style.border = 'none';
+        });
+        et.addEventListener("mouseleave", function(){
+            et.style.backgroundColor = '';
+        });
+         };
+
+
+    /*  팝업호출닫기 hd4-b 클릭시 pop-hd4b 알림창 z-index: 46 */
+    let js_pophd4b = document.querySelector(".pop-hd4b");
+    let js_hd4b = document.querySelector(".hd4-b");
+    js_hd4b.addEventListener("click", function(){
+        js_pophd4b.style.display = "flex";
+        js_hd4b.classList.add("at");
+        Ceffect(js_hd4b);
+
+    });
+    document.addEventListener("mouseup", function(ke){
+        if(!js_pophd4b.contains(ke.target) && ke.target !== js_hd4b){
+            js_pophd4b.style.display = "none";
+            js_hd4b.classList.remove("at");
+        }
+    });
+
+
+
+    /* 팝업호출닫기 hd4-a 클릭시 pop-hd4a 동영상업로드창 */
+    let js_hd4a = document.querySelector(".hd4-a");
+    let js_pophd4a = document.querySelector(".pop-hd4a");
+    js_hd4a.addEventListener("click", function(){
+        js_pophd4a.style.display = "flex";
+        Ceffect(js_hd4a);
+    });
+    document.addEventListener("mouseup", function(ke){
+        if(!js_pophd4a.contains(ke.target) && ke.target !== js_hd4a){
+            js_pophd4a.style.display = "none";
+        }
+    });
+
+
+    /* 페이드인 페이드 아웃에 사용되는 함수 */
+    function fadeIn(et){
+        et.style.display = "block";
+        et.style.opacity = 0;
+        setTimeout(function(){
+            et.style.opacity = 1;
+        }, 100)
+    }
+    function fadeOut(et){
+        et.style.opacity = 0;
+        setTimeout(function(){
+            et.style.display = "none";
+        }, 500)
+    } /* 페이드인 페이드 아웃에 사용되는 함수 */
+
+
+    /* hd2-b > a 음성녹음 클릭시 pop-voise 호출*/
+    document.querySelector(".pop-bg").style.transition = "opacity 0.5s ease"; // 팝업 백그라운드 타이머세팅//
+    let js_popbg = document.querySelector(".pop-bg");
+    document.querySelector(".pop-voise").style.display = "none";
+    document.querySelector(".hd2-b > a").addEventListener("click", function(){
+        document.querySelector(".pop-voise").style.display = "block"; 
+        fadeIn(js_popbg);
+        Ceffect(document.querySelector(".hd2-b > a"));
+    });
+    document.querySelector(".pop-voise > div").addEventListener("click", function(){
+        document.querySelector(".pop-voise").style.display = "none";
+        fadeOut(js_popbg); 
+    });
+    document.querySelector(".pop-bg").addEventListener("click", function(){
+        document.querySelector(".pop-voise").style.display = "none";
+        fadeOut(js_popbg);
+    });
+
+
+
+    /* pop-voise > a 음성녹음 버튼 클릭시 pop-voise > h3 출력 */
+    if(!("webkitSpeechRecognition" in window)){
+        alert("해당 브라우저 사용 불가능")
+    } else {
+        let speech = new webkitSpeechRecognition();  //음성 녹음 객체생성//
+
+         // 음성 인식 결과 이벤트 리스너
+        speech.addEventListener("result", function(ev){
+            let transcript = ev.results[0][0].transcript;
+            document.querySelector(".pop-voise > h3").textContent = transcript;
+            js_input.value = transcript;
+        });
+
+        /* pop-voise > sapn 음성녹음시 애니메이션 출력 */
+        let js_popspan = document.querySelector(".pop-voise > span");
+            function spanime(){
+                js_popspan.style.display = "block";
+                js_popspan.style.animation = "grow 1s forwards";
+                js_popspan.addEventListener("animationend", function(){
+                js_popspan.style.display = "none";
+                setTimeout(spanime, 0);
+                }, {once: true});
+            }
+
+        // 녹음 시작 이벤트 핸들러 //
+            speech.onstart = function(){
+                spanime();
+                document.querySelector(".pop-voise > h3").textContent = "듣는 중...";
+                document.querySelector(".pop-voise > a").style.backgroundColor = "rgba(200,0,0)";
+                document.querySelector(".pop-voise > p").style.display = "none";
+                console.log("음성 녹음이 시작되었습니다.");
+
+        };
+        // 녹음 종료 이벤트 헨들러 //
+            speech.onend = function(){
+                if(document.getElementById("wrap").classList.contains("dark")){
+                    document.querySelector(".pop-voise > a").style.backgroundColor = "rgb(113,113,113)";
+                } else {document.querySelector(".pop-voise > a").style.backgroundColor = "rgb(200,200,200)";}
+                document.querySelector(".pop-voise > h3").textContent = "마이크가 꺼져 있습니다. 다시 시도해 주세요 ";
+                js_popspan.style.display = "none"; //span 애니메이션 none //
+                js_popspan.style.animation = "none"; //span 애니메이션 none//
+                document.querySelector(".pop-voise > p").style.display = "block";
+                console.log("음성 녹음이 종료되었습니다.");
+                
+        };
+
+        // 음성녹음 버튼 클릭시 //
+        document.querySelector(".hd2-b > a").addEventListener("click", function(){
+            if(!speech.isRecording){
+                speech.start();
+            }
+        });
+
+        // pop내부 음성녹음 시작/중지 버튼 클릭시 
+        document.querySelector(".pop-voise > a").addEventListener("click", function(){
+            if(speech.isRecording){
+                speech.stop();
+            } else {speech.start();}
+        });
+
+
+        
+        /* hd3-bb 반응형 음성녹음 클릭시 pop-viose 호출 */
+        document.querySelector(".hd3-bb").addEventListener("click", function(){
+        document.querySelector(".pop-voise").style.display = "block";
+        fadeIn(js_popbg);
+        Ceffect(document.querySelector(".hd3-b"));
+        });
+        document.querySelector(".hd3-bb").addEventListener("click", function(){
+            if(!speech.isRecording){
+                speech.start();
+            }
+        });
+    }  /* 음성녹음 종료 */
+
+
+    /* input 입력창 클릭시 좌측돋보기 나타나고 보더색갈생기고 */  /*입력창 글자칠시 x버튼 생성 x버튼누를시 글자삭제 */
+    let js_textleft = document.getElementsByClassName("text-left")[0];
+    let js_hd2a = document.getElementsByClassName("hd2-a")[0];
+    let js_input = document.querySelector(".hd2-a > input");
+    let js_textright = document.getElementsByClassName("text-right")[0];
+    let js_hd2a_original = getComputedStyle(js_hd2a).borderColor;
+
+    /* 입력창 클릭시 좌측돋보기 나타나고 보더색갈생기고 */  
+    js_textleft.style.display = 'none';
+    js_input.addEventListener('focus', function(){
+        js_textleft.style.display = 'block';
+        js_hd2a.style.borderColor = '#1C62B9';
+
+    });
+    js_input.addEventListener('blur', function(){
+        js_textleft.style.display = 'none';
+        js_hd2a.style.borderColor = js_hd2a_original;
+    });
+    /*입력창 글자칠시 x버튼 생성 x버튼누를시 글자삭제 */
+    js_textright.style.display = 'none';
+    js_input.addEventListener('input', function(){
+        if (js_input.value.length > 0){
+            js_textright.style.display = 'flex';
+            js_input.style.width = 'calc(100% - 65px)';
+        } else {
+            js_textright.style.display = 'none';
+            js_input.style.width = '100%';
+        };
+    });
+    js_textright.addEventListener('click', function(){
+        js_input.value = '';
+        js_textright.style.display = 'none';
+        js_input.style.width = '100%';
+        js_input.focus();
+    }); /* 검색창 효과 종료 */
+
+
+    /* link-f 알고리즘  닿을경우 박스호출 */
+    let js_linkf = document.getElementsByClassName("link-f")[0];
+    let js_linkful = document.querySelector('.link-f > ul');
+    let js_linkleft = document.querySelector('.link-left');
+    let js_linkright = document.querySelector('.link-right');
+    js_linkleft.style.display = 'none';
+    js_linkright.style.display = 'none';
+    // 변수 resize 안에 새로운값을 관측하는 함수//
+    const resize = new ResizeObserver(function(entrise){
+    entrise.forEach(function(entry){
+        let re_linkf = js_linkf.getBoundingClientRect();
+        let re_linkful = js_linkful.getBoundingClientRect();
+        //만약 ul오른쪽벽이 linkf보다 클 경우 작동//
+        if(re_linkful.right >  re_linkf.right){
+            js_linkright.style.display = 'flex';
+            js_linkleft.style.display = 'flex';
+        } else {
+            js_linkright.style.display = 'none';
+            js_linkleft.style.display = 'none';
+        }
+      });
+    });
+
+    resize.observe(js_linkf);
+    /* link-f 알고리즘 화살표누를시 ul 이동 */
+    let right_span = js_linkright.querySelector('span');
+    let left_span = js_linkleft.querySelector('span');
+    let cur_margin = 0;
+    let max_margin = 200;
+    /* 오른쪽누르면 margin -80px 씩이동 */
+    right_span.addEventListener("click",function(){
+        if(cur_margin > -max_margin){ // 최대 마진값보다 작을때만 이동 //
+            cur_margin -= 80;
+        if( cur_margin < -max_margin) cur_margin = -max_margin; //최대 마진값보다 작아지지않도록 조정//
+        js_linkful.style.marginLeft =  cur_margin + 'px';
+        js_linkful.style.transition = 'all 0.3s';
+        };
+    });
+    /* 왼쪽누르면 margin +80px 씩이동 */
+    left_span.addEventListener("click",function(){
+        if(cur_margin < 10){ // 마진값이 양수일때만 이동
+            cur_margin += 80;
+        if(cur_margin > 10) cur_margin = 10; // 16보다 크지 않도록 조정//
+        js_linkful.style.marginLeft = cur_margin + 'px';
+        js_linkful.style.transition = 'all 0.3s';
+        };
+    });
+
+    // 제이쿼리 54줄에서 이미 쓰임 //
+        // .im-title 버튼-c ... 클릭이펙트 //
+    var js_buttonC = document.querySelector(".button-c");
+        js_buttonC.addEventListener('mousedown', function(){
+            js_buttonC.style.backgroundColor = 'rgba(0,0,0,0.4)';
+        });
+        js_buttonC.addEventListener('mouseup', function(){
+            js_buttonC.style.backgroundColor = '';  
+        });
+        js_buttonC.addEventListener('mouseleave', function(){
+            js_buttonC.style.backgroundColor = '';
+
+    });
+
+ 
+    // im 내부 음소거 자막 버튼 투명도 변화 //
+    var js_iv = document.querySelector(".i-v");
+    var js_ic = document.querySelector(".i-c");
+    js_iv.addEventListener("click", function(){
+        if(window.getComputedStyle(js_iv).opacity === '0.7'){
+            js_iv.style.opacity = '1';
+        } else {
+            js_iv.style.opacity = '0.7';
+        }
+    });
+    js_ic.addEventListener("click", function(){
+        if (window.getComputedStyle(js_ic).opacity === '0.7'){
+            js_ic.style.opacity = '1';
+    }    else {
+            js_ic.style.opacity = '0.7';
+    }
+    });
+    
+
+
+
+    // 이거도임시 로 im복사하는 스크립트//
+        /*
+        var cloneIm = js_im.cloneNode(false); // 하위 요소들은 복사하지 않습니다.
+        cloneIm.innerHTML = js_im.innerHTML; // HTML 구조만 복사합니다. 
+        */
+    var js_img = document.querySelector(".img");
+    var js_im = document.querySelector(".im");
+    var js_bf3 = document.querySelector(".ban-f > a:nth-child(3)");
+    var js_bf4 = document.querySelector(".ban-f > a:nth-child(4)");
+
+    // 동영상 카드 8개로 증식
+    for (let i = 0; i < 7; i++){
+        let cloneIm = js_im.cloneNode(true);
+        js_img.appendChild(cloneIm);
+    }
+
+    js_bf3.addEventListener("click", function(){
+        var cloneIm = js_im.cloneNode(true);
+         js_img.appendChild(cloneIm);
+         
+    });
+    js_bf4.addEventListener("click", function(){
+        if(js_img.lastChild){
+        js_img.removeChild(js_img.lastChild);
+        }
+    });
+
+    
+
+
+
+    /* 조회수 만회, 천회 단위로 끊어지게*/
+    function vc(count){
+            if (count >= 10000){
+                var result = (count / 10000).toFixed(1);
+                return result.endsWith('.0') ? result.slice(0, -2) + '만회' : result + '만회';
+            } else if (count >= 1000) {
+                var result = (count / 1000).toFixed(1);
+                return result.endsWith('.0') ? result.slice(0, -2) + '천회' : result + '천회';
+            } else {
+                return count.toLocaleString() + "회";
+            }
+    }
+            /* 날짜계산 함수 */
+    function calcday(infodate){
+            var uploaddate = new Date(infodate);
+            var nowdate = new Date();
+            var daysAgo = Math.floor((nowdate - uploaddate) / (1000 * 60 * 60 * 24));
+            return daysAgo;
+    }
+    
+   
+    
+    /* 동영상 가상 API start */
+    function v_0(){ // im 선택자 //
+    var js_im = document.querySelectorAll(".im")[0]; // im 선택자 html 출력//
+    /* 가상 영상 정보들*/
+    var videoinfo = {
+        strong: "안녕하세요 이것은 가상 스크립트 내장된 API 입니다 현재는 API v_0",
+        p: "채널명 v_0",
+        a: "https://noncopyright.com/wp-content/uploads/2018/10/rawpixel-666934-unsplash.jpg",
+        view: 1000,
+        upload: "2024-12-31T12:00:00Z",
+        link : "https://youtu.be/DpTe4ai10ek?list=RDMMDpTe4ai10ek",
+        t: 20,
+    };
+
+    /*날짜 출력 포맷 변경*/
+    var fvc = vc(videoinfo.view);
+    var js_span = "조회수: " + fvc + " &middot; 업로드: " + calcday(videoinfo.upload) + "일 전";
+
+        js_im.querySelector(".im img").src = videoinfo.a;
+        js_im.querySelector(".im-a img").src = videoinfo.a;
+
+        js_im.querySelector(".im-b > strong").textContent = videoinfo.strong;
+        js_im.querySelector(".im-b > p").textContent = videoinfo.p;
+        js_im.querySelector(".im-b > span").innerHTML = js_span;
+
+        js_im.querySelector("a").href = videoinfo.link;
+        js_im.querySelector(".im-title > a").href = videoinfo.link;
+
+        /* css var-time 동기화*/
+        js_im.style.setProperty('--var-time',videoinfo.t);
+
+        /*.im 호버할경우 재생시간 흘러가도록 만듬*/
+    var js_i_t = js_im.querySelector('.icon.i-t');
+    var timeleft = videoinfo.t;
+    var timeinterval;
+        js_im.addEventListener('mouseover', function(){
+            timeinterval = setInterval(function(){
+            var hours = Math.floor(timeleft / 3600);
+            var minutes = Math.floor((timeleft % 3600) / 60);
+            var seconds = timeleft % 60;
+            var displaytime = `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            js_i_t.textContent = displaytime;
+                /*점점 시간을뺴며 0미만일경우 원래시간으로 복귀*/
+                timeleft--;
+                if(timeleft < 0){
+                timeleft = videoinfo.t;
+                };                
+            },950);
+            
+        });
+        /* .im 호버해제할 경우 재생시간 초기화 */
+        js_im.addEventListener('mouseout',function(){
+            clearInterval(timeinterval);
+            timeleft = videoinfo.t;
+            var hours = Math.floor(timeleft / 3600);
+            var minutes = Math.floor((timeleft % 3600) / 60);
+            var seconds = timeleft % 60;
+            var displaytime = `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            js_i_t.textContent = displaytime;
+        });
+    }; /* 가상 API End*/
+
+
+
+</script>
+<script src="../MyNote/imAPI.js"></script>
+</body>
+</html>
